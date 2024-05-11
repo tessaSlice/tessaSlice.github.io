@@ -2,10 +2,10 @@
 
 const { frontmatter } = Astro.props;
 
+// modest style courtesy of https://markdowncss.github.io/
+import '../styles/modest.css'
+
 ---
-
-<!-- TODO: create a style! -->
-
 <h1>{frontmatter.title}</h1>
 <p>Written by {frontmatter.author}</p>
 <slot />

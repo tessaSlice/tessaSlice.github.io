@@ -2,9 +2,12 @@
 
 const { frontmatter } = Astro.props;
 
+import Header from '../components/Header.astro'
+
 // modest style courtesy of https://markdowncss.github.io/
 import '../styles/modest.css'
 
 ---
+<Header />
 <h1>{frontmatter.title}</h1>
 <slot />

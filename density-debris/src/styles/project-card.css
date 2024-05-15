@@ -1,0 +1,73 @@
+.project-card {
+    position: relative;
+    width: 300px;
+    /* Adjust width as needed */
+    height: 200px;
+    /* Adjust height as needed */
+    border: 1px solid #ccc;
+    /* Create a border */
+    border-radius: 8px;
+    /* Add border radius for rounded corners */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow for depth */
+}
+
+.icon-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Align items to the top */
+}
+
+.github-link {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    overflow: visible;
+    z-index: 1;
+}
+
+.github-icon {
+    width: 30px;
+    /* Adjust size as needed */
+    height: auto;
+    align-self: flex-start;
+    /* Align the GitHub icon to the top */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.content {
+    padding-left: 40px;
+    /* Adjust padding to accommodate the icon */
+    overflow: hidden;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.icon {
+    font-size: 24px;
+    /* Adjust size as needed */
+    margin-right: 15px;
+}
+
+.text {
+    flex: 1;
+}
+
+.text h3 {
+    margin: 0;
+    font-size: 18px;
+    /* Adjust size as needed */
+}
+
+.text p {
+    margin: 0;
+    font-size: 14px;
+    /* Adjust size as needed */
+}

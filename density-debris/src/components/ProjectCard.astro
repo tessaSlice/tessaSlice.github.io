@@ -1,0 +1,32 @@
+---
+import "../styles/project-card.css";
+---
+
+<div class="project-card">
+    <a
+        href="https://github.com/tessaSlice/NextGeneration-Coding-Competition"
+        target="_blank" class="github-link"
+    >
+        <!-- TODO: make the GitHub icon a local icon -->
+        <img
+            src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
+            alt="GitHub"
+            class="github-icon"
+        />
+    </a>
+    <div class="content">
+        <div class="item">
+            <div class="icon-container">
+                <div class="icon">🚀</div>
+                <!-- TODO: Replace with your emoji or image -->
+            </div>
+            <div class="text">
+                <h3>{Astro.props.name}</h3>
+                <p>{Astro.props.caption}</p>
+            </div>
+        </div>
+        <p>{Astro.props.description}</p>
+        <!-- TODO: add a horizontal line -->
+        <!-- TODO: below this, add a bunch of tiny blocks that describe what tech libraries, frameworks I used for this project  -->
+    </div>
+</div>

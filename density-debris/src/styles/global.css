@@ -38,7 +38,7 @@ h1 {
     width: 100%;
     top: 5rem;
     left: 48px;
-    background-color: #ff9776;
+    background-color: #dfe2e5;
     display: none;
     margin: 0;
 }
@@ -55,7 +55,7 @@ h1 {
 
 .nav-links a:hover,
 .nav-links a:focus {
-    background-color: #ff9776;
+    background-color: #a1d0ff;
 }
 
 .expanded {
@@ -72,8 +72,12 @@ h1 {
     }
 
     .nav-links a {
+        background-color: #f1f5f9;
+        transition: background-color 1s ease;
+        cursor: pointer;
         display: inline-block;
         padding: 15px 20px;
+        border-radius: 10px;
     }
 
 }

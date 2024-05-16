@@ -1,0 +1,17 @@
+---
+import "../styles/tags.css";
+---
+
+<astro>
+    <script context="module">
+        export const props = {
+            tags: [], // Initialize tags prop as an empty array
+        };
+    </script>
+
+    <!-- Check if props.tags is an array before mapping over it -->
+    <ul class="tag-list">
+        <!-- Iterate over the tags if it's an array, otherwise display a message -->
+        {Astro.props.tags.map((tag) => <li class="tag">{tag}</li>)}
+    </ul>
+</astro>

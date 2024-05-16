@@ -10,6 +10,7 @@
     /* Add border radius for rounded corners */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     /* Add a subtle shadow for depth */
+    display: flex;
 }
 
 .icon-container {
@@ -70,4 +71,11 @@
     margin: 0;
     font-size: 14px;
     /* Adjust size as needed */
+}
+
+.tags-container {
+    display: inline-block;
+    /* Adjusted to remove the gap */
+    vertical-align: top;
+    /* Align containers to the top to prevent vertical spacing */
 }

@@ -1,0 +1,34 @@
+/* ProjectTagsContainer.styles.css */
+.tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 4px 8px;
+    margin-left: 4px;
+    margin-right: 2px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.tag-container {
+    white-space: nowrap;
+}
+
+
+.style1 {
+    /* Styles specific to enumValue1 */
+}
+
+.style2 {
+    /* Styles specific to enumValue2 */
+}
+
+/* Define more styles for other enum values as needed */

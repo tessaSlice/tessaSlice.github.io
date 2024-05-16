@@ -1,11 +1,13 @@
 ---
 import "../styles/project-card.css";
+import ProjectTags from "./ProjectTags.astro";
 ---
 
 <div class="project-card">
     <a
         href="https://github.com/tessaSlice/NextGeneration-Coding-Competition"
-        target="_blank" class="github-link"
+        target="_blank"
+        class="github-link"
     >
         <!-- TODO: make the GitHub icon a local icon -->
         <img
@@ -27,6 +29,11 @@ import "../styles/project-card.css";
         </div>
         <p>{Astro.props.description}</p>
         <!-- TODO: add a horizontal line -->
-        <!-- TODO: below this, add a bunch of tiny blocks that describe what tech libraries, frameworks I used for this project  -->
+        <div class="tags-container">
+            <ProjectTags tags={Astro.props.languages} />
+        </div>
+        <div class="tags-container" style="margin-left:0px;">
+            <ProjectTags tags={Astro.props.themes} />
+        </div>
     </div>
 </div>

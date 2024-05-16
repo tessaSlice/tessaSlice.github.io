@@ -1,4 +1,3 @@
-/* ProjectTagsContainer.styles.css */
 .tag-list {
     list-style: none;
     padding: 0;
@@ -21,14 +20,3 @@
 .tag-container {
     white-space: nowrap;
 }
-
-
-.style1 {
-    /* Styles specific to enumValue1 */
-}
-
-.style2 {
-    /* Styles specific to enumValue2 */
-}
-
-/* Define more styles for other enum values as needed */

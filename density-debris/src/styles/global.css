@@ -62,22 +62,25 @@ h1 {
     display: unset;
 }
 
-@media screen and (min-width: 636px) {
+@media screen and (min-width: 360px) {
     .nav-links {
-        margin-left: 5em;
-        display: block;
-        position: static;
-        width: auto;
-        background: none;
+        display: flex;
+        justify-content: space-around;
+        /* Distribute items with equal space around them */
+        align-items: center;
+        /* Center items vertically */
+        padding: 1rem;
+        background-color: var(--background-color);
+        color: var(--text-color);
     }
 
     .nav-links a {
-        background-color: #f1f5f9;
+        color: var(--text-color);
+        text-decoration: none;
+        margin: 0 10px;
         transition: background-color 1s ease;
         cursor: pointer;
-        display: inline-block;
         padding: 15px 20px;
         border-radius: 10px;
     }
-
 }

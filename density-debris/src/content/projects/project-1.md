@@ -1,13 +1,20 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 
-title: 'My First Blog Post'
-description: 'This is the first post of my new Astro blog.'
-author: 'Amy Lee'
+name: 'Embedded Coding Competition'
+caption: "Cracking a safe with an Arduino!"
+description: '[TODO add summary from MD]'
+languages:
+  - C
+  - Arduino
+themes:
+  - Arduino IDE
+  - Embedded
 image:
     url: 'https://docs.astro.build/assets/full-logo-light.png'
     alt: 'The full Astro logo.'
 tags: ["astro", "blogging", "learning in public"]
+github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"
 ---
 
 Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.

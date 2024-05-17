@@ -10,10 +10,20 @@ code {
         monospace;
 }
 
-html {
-    background-color: #f1f5f9;
-    font-family: sans-serif;
+:root {
+    /* Default light mode styles */
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --button-background-color: #ffffff;
+    --button-text-color: #333333;
+
+    /* Dark mode styles */
+    --dark-background-color: #333333;
+    --dark-text-color: #ffffff;
+    --dark-button-background-color: #333333;
+    --dark-button-text-color: #ffffff;
 }
+
 
 body {
     margin: 0 auto;
@@ -21,6 +31,14 @@ body {
     max-width: 80ch;
     padding: 1rem;
     line-height: 1.5;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+button#theme-toggle {
+    background-color: var(--background-color);
+    color: var(--text-color);
+
 }
 
 * {

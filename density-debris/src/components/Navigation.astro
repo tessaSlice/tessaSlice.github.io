@@ -20,13 +20,6 @@ import "../styles/global.css";
 
 <!-- to handle the theme toggle button -->
 <script>
-    // Get reference to the button
-    const themeToggle = document.getElementById("theme-toggle");
-
-    // Add event listener to the button
-    themeToggle.addEventListener("click", toggleTheme);
-
-    // Function to toggle between light mode and dark mode
     function toggleTheme() {
         const currentTheme =
             document.documentElement.getAttribute("data-theme") || "light";
@@ -36,6 +29,29 @@ import "../styles/global.css";
         updateStyles(newTheme);
         updateIcon(newTheme);
     }
+
+    function updateIcon(theme) {
+        const iconLight = document.getElementById("theme-icon-light");
+        const iconDark = document.getElementById("theme-icon-dark");
+        if (theme === "light") {
+            iconLight.style.display = "inline";
+            iconDark.style.display = "none";
+        } else {
+            iconLight.style.display = "none";
+            iconDark.style.display = "inline";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+        updateStyles(savedTheme);
+        updateIcon(savedTheme);
+    });
+
+    document
+        .getElementById("theme-toggle")
+        .addEventListener("click", toggleTheme);
 
     // Function to update the CSS custom properties based on the theme
     function updateStyles(theme) {
@@ -69,19 +85,6 @@ import "../styles/global.css";
                 "--button-text-color",
                 "var(--default-button-text-color)",
             );
-        }
-    }
-
-    // Function to update the icon based on the current theme
-    function updateIcon(theme) {
-        const iconLight = document.getElementById("theme-icon-light");
-        const iconDark = document.getElementById("theme-icon-dark");
-        if (theme === "light") {
-            iconLight.style.display = "inline";
-            iconDark.style.display = "none";
-        } else {
-            iconLight.style.display = "none";
-            iconDark.style.display = "inline";
         }
     }
 </script>

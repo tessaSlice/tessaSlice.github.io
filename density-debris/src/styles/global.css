@@ -86,7 +86,6 @@ h1 {
         justify-content: space-around;
         /* Distribute items with equal space around them */
         align-items: center;
-        /* Center items vertically */
         padding: 1rem;
         background-color: var(--background-color);
         color: var(--text-color);

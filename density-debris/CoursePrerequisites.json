@@ -1,0 +1,313 @@
+{
+    "EECS 110": [],
+    "EECS 180": [],
+    "EECS 183": [],
+    "EECS 198": [],
+    "EECS 200": [
+        [
+            "ENGR 100",
+            "ENGR 101",
+            "ENGR 151",
+            "EECS 180",
+            "EECS 280"
+        ]
+    ],
+    "EECS 201": [
+        [
+            "EECS 180",
+            "EECS 183",
+            "ENGR 101",
+            "ENGR 151",
+            "ROB 102"
+        ],
+        [
+            "EECS 280",
+            "EECS 281"
+        ]
+    ],
+    "EECS 203": [
+        [
+            "MATH 115",
+            "MATH 116",
+            "MATH 119",
+            "MATH 120",
+            "MATH 121",
+            "MATH 156",
+            "MATH 175",
+            "MATH 176",
+            "MATH 185",
+            "MATH 186",
+            "MATH 214",
+            "MATH 215",
+            "MATH 216",
+            "MATH 217",
+            "MATH 255",
+            "MATH 256",
+            "MATH 285",
+            "MATH 286",
+            "MATH 295",
+            "MATH 296",
+            "MATH 417",
+            "MATH 419"
+        ]
+    ],
+    "EECS 215": [
+        [
+            "MATH 116",
+            "MATH 121",
+            "MATH 156"
+        ],
+        [
+            "ENGR 101",
+            "ENGR 151",
+            "EECS 180",
+            "EECS 183"
+        ],
+        [
+            "PHYSICS 240",
+            "PHYSICS 260"
+        ]
+    ],
+    "EECS 216": [
+        [
+            "EECS 215",
+            "EECS 314",
+            "BIOMEDE 211"
+        ]
+    ],
+    "EECS 230": [
+        [
+            "MATH 215"
+        ],
+        [
+            "PHYSICS 240"
+        ],
+        [
+            "EECS 215"
+        ]
+    ],
+    "EECS 250": [
+        [
+            "EECS 230",
+            "PHYSICS 240"
+        ]
+    ],
+    "EECS 270": [
+        [
+            "EECS 180",
+            "EECS 183",
+            "ENGR 101",
+            "ENGR 151",
+            "ROB 102",
+            "EECS 280"
+        ]
+    ],
+    "EECS 280": [
+        [
+            "ENGR 101",
+            "ENGR 151",
+            "EECS 180",
+            "EECS 183",
+            "ROB 102"
+        ]
+    ],
+    "EECS 281": [
+        [
+            "EECS 203",
+            "MATH 465",
+            "MATH 565"
+        ],
+        [
+            "EECS 280"
+        ]
+    ],
+    "EECS 285": [
+        [
+            "EECS 280"
+        ]
+    ],
+    "EECS 298": [],
+    "EECS 300": [
+        [
+            "EECS 200"
+        ],
+        [
+            "EECS 215",
+            "EECS 216",
+            "EECS 230",
+            "EECS 280"
+        ]
+    ],
+    "EECS 301": [
+        [
+            "EECS 216"
+        ]
+    ],
+    "EECS 311": [
+        [
+            "EECS 215"
+        ],
+        [
+            "EECS 216"
+        ]
+    ],
+    "EECS 312": [
+        [
+            "EECS 215"
+        ],
+        [
+            "MATH 216"
+        ]
+    ],
+    "EECS 214": [
+        [
+            "MATH 214",
+            "MATH 216"
+        ],
+        [
+            "PHYSICS 240"
+        ]
+    ],
+    "EECS 320": [
+        [
+            "EECS 215"
+        ],
+        [
+            "PHYSICS 240",
+            "PHYSICS 260"
+        ]
+    ],
+    "EECS 330": [
+        [
+            "EECS 230"
+        ]
+    ],
+    "EECS 334": [
+        [
+            "PHYSICS 240"
+        ]
+    ],
+    "EECS 351": [
+        [
+            "EECS 216"
+        ]
+    ],
+    "EECS 367": [
+        [
+            "EECS 281"
+        ],
+        [
+            "MATH 214",
+            "MATH 217",
+            "MATH 296",
+            "MATH 417",
+            "MATH 419",
+            "ROB 101"
+        ]
+    ],
+    "EECS 370": [
+        [
+            "EECS 203",
+            "MATH 465",
+            "MATH 565",
+            "EECS 270"
+        ],
+        [
+            "EECS 280"
+        ]
+    ],
+    "EECS 373": [
+        [
+            "EECS 270"
+        ],
+        [
+            "EECS 370"
+        ]
+    ],
+    "EECS 376": [
+        [
+            "EECS 280"
+        ],
+        [
+            "EECS 203",
+            "MATH 465",
+            "MATH 565"
+        ]
+    ],
+    "EECS 388": [
+        [
+            "EECS 281"
+        ],
+        [
+            "EECS 201"
+        ],
+        [
+            "EECS 370"
+        ]
+    ],
+    "EECS 390": [
+        [
+            "EECS 281"
+        ]
+    ],
+    "EECS 398": [],
+    "EECS 399": [],
+    "EECS 402": [],
+    "EECS 403": [
+        [
+            "EECS 402"
+        ],
+        [
+            "EECS 203",
+            "MATH 403",
+            "MATH 465",
+            "MATH 565"
+        ]
+    ],
+    "EECS 406": [],
+    "EECS 409": [],
+    "EECS 410": [],
+    "EECS 411": [
+        [
+            "EECS 311",
+            "EECS 330",
+            "Graduate"
+        ]
+    ],
+    "EECS 413": [
+        [
+            "EECS 311"
+        ],
+        [
+            "EECS 320"
+        ],
+        [
+            "Graduate"
+        ]
+    ],
+    "EECS 414": [
+        [
+            "MATH 215"
+        ],
+        [
+            "MATH 216"
+        ],
+        [
+            "PHYSICS 240"
+        ],
+        [
+            "Graduate"
+        ]
+    ],
+    "EECS 417": [
+        [
+            "EECS 215"
+        ],
+        [
+            "EECS 216"
+        ],
+        [
+            "Graduate"
+        ]
+    ]
+}

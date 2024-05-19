@@ -6,9 +6,8 @@ caption: "Cracking a safe with an Arduino!"
 description: '[TODO add summary from MD]'
 languages:
   - C
-  - Arduino
 themes:
-  - Arduino IDE
+  - Arduino
   - Embedded
 image:
     url: 'https://docs.astro.build/assets/full-logo-light.png'

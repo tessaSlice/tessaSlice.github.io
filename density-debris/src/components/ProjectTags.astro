@@ -1,17 +1,13 @@
 ---
-import "../styles/tags.css";
+// Import required for props definition
+export interface ProjectTagsProps {
+    tags: string[];
+}
+
+// Define the props using set:props
+const { tags }: ProjectTagsProps = Astro.props;
 ---
 
-<astro>
-    <script context="module">
-        export const props = {
-            tags: [], // Initialize tags prop as an empty array
-        };
-    </script>
-
-    <!-- Check if props.tags is an array before mapping over it -->
-    <ul class="tag-list">
-        <!-- Iterate over the tags if it's an array, otherwise display a message -->
-        {Astro.props.tags.map((tag) => <li class="tag">{tag}</li>)}
-    </ul>
-</astro>
+<div>
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+</div>

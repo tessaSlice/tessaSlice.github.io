@@ -2,15 +2,27 @@
     position: relative;
     width: 300px;
     /* Adjust width as needed */
-    height: 200px;
-    /* Adjust height as needed */
-    border: 1px solid #ccc;
-    /* Create a border */
-    border-radius: 8px;
-    /* Add border radius for rounded corners */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow for depth */
+    border: 1px solid #e0e0e0;
+    /* Lighter border */
+    border-radius: 10px;
+    /* Slightly more rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transitions */
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    /* Consistent padding */
+    box-sizing: border-box;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    /* Lift on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow on hover */
 }
 
 .icon-container {
@@ -30,25 +42,28 @@
 }
 
 .github-icon {
-    width: 30px;
+    width: 33px;
     /* Adjust size as needed */
     height: auto;
-    align-self: flex-start;
-    /* Align the GitHub icon to the top */
     border: 1px solid #ccc;
     border-radius: 8px;
 }
 
 .content {
-    padding-left: 40px;
-    /* Adjust padding to accommodate the icon */
-    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Center align items horizontally */
+    text-align: center;
+    /* Center align text */
 }
 
 .item {
+    padding-left: 10px;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
 }
 
 .icon {
@@ -58,24 +73,54 @@
 }
 
 .text {
-    flex: 1;
+    margin-bottom: 15px;
 }
 
 .text h3 {
-    margin: 0;
-    font-size: 18px;
-    /* Adjust size as needed */
+    margin: 0 0 10px 0;
+    /* Margin below the title */
+    font-size: 20px;
+    /* Larger font size for title */
+    font-weight: bold;
 }
 
 .text p {
     margin: 0;
     font-size: 14px;
-    /* Adjust size as needed */
+}
+
+.description {
+    margin-top: 5px;
+}
+
+.tags-wrapper {
+    display: flex;
+    /* Center align tags horizontally */
+    flex-wrap: wrap;
+    /* Allow tags to wrap if necessary */
+    align-content: flex-end;
 }
 
 .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    /* Space between individual tags */
+}
+
+.tags-container .tag {
+    background-color: #f1f1f1;
+    /* Light background for tags */
+    color: #333;
+    /* Dark text for readability */
+    padding: 5px 10px;
+    /* Padding for tags */
+    border-radius: 5px;
+    /* Rounded corners for tags */
+    font-size: 12px;
+    /* Smaller font for tags */
     display: inline-block;
-    /* Adjusted to remove the gap */
-    vertical-align: top;
-    /* Align containers to the top to prevent vertical spacing */
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    margin-bottom: 8px;
 }

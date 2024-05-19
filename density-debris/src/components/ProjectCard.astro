@@ -30,12 +30,14 @@ const projects = await getCollection("projects");
                         <p>{project.data.caption}</p>
                     </div>
                 </div>
-                <p>{project.data.description}</p>
-                <div class="tags-container">
-                    <ProjectTags tags={project.data.languages} />
-                </div>
-                <div class="tags-container" style="margin-left:0px;">
-                    <ProjectTags tags={project.data.themes} />
+                <p class="description">{project.data.description}</p>
+                <div class="tags-wrapper">
+                    <div class="tags-container">
+                        <ProjectTags tags={project.data.languages} />
+                    </div>
+                    <div class="tags-container">
+                        <ProjectTags tags={project.data.themes} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
-
 name: 'Embedded Coding Competition'
 caption: "Cracking a safe with an Arduino!"
 description: '[TODO add summary from MD]'

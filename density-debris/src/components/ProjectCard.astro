@@ -39,6 +39,9 @@ const projects = await getCollection("projects");
                         <ProjectTags tags={project.data.themes} />
                     </div>
                 </div>
+                <a href={`/projects/${project.slug}`} class="learn-more">
+                    Learn more
+                </a>
             </div>
         </div>
     ))

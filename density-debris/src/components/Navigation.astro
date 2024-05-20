@@ -2,23 +2,22 @@
 import "../styles/global.css";
 ---
 
-<!-- TODO: add light/dark mode toggle with icon! -->
-<div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/project-home.html">Projects</a>
-    <!-- TODO: modify the resume link so that it directs to a new page with a link to my resume as a PDF -->
-    <!-- add to the left of the resume/cv an icon to indicate it'll take you to a new page -->
-    <a href="/resume/">Resume/CV</a>
-    <a href="CourseCharter">Course Charter</a>
-    <button id="theme-toggle">
-        <span id="theme-icon-light">&#9728;</span>
-        <!-- Sun icon for light mode -->
-        <span id="theme-icon-dark">&#9790;</span>
-        <!-- Moon icon for dark mode -->
+<div class="nav-container">
+    <button class="hamburger-menu" id="hamburger-menu">
+        &#9776; <!-- Hamburger icon -->
     </button>
+    <div class="nav-links" id="nav-links">
+        <a href="/">Home</a>
+        <a href="/project-home.html">Projects</a>
+        <a href="/resume/">Resume/CV</a>
+        <a href="/CourseCharter">Course Charter</a>
+        <button id="theme-toggle">
+            <span id="theme-icon-light">&#9728;</span>
+            <span id="theme-icon-dark">&#9790;</span>
+        </button>
+    </div>
 </div>
 
-<!-- to handle the theme toggle button -->
 <script>
     function toggleTheme() {
         const currentTheme =
@@ -53,7 +52,6 @@ import "../styles/global.css";
         .getElementById("theme-toggle")
         .addEventListener("click", toggleTheme);
 
-    // Function to update the CSS custom properties based on the theme
     function updateStyles(theme) {
         const root = document.documentElement;
 
@@ -87,39 +85,10 @@ import "../styles/global.css";
             );
         }
     }
+
+    // Toggle navigation links visibility on hamburger menu click
+    document.getElementById("hamburger-menu").addEventListener("click", () => {
+        const navLinks = document.getElementById("nav-links");
+        navLinks.classList.toggle("expanded");
+    });
 </script>
-
-<style>
-    /* Styles for the toggle button */
-    #theme-toggle {
-        padding: 0.5rem 1rem;
-        background-color: #fff; /* Light mode background color */
-        color: #333; /* Light mode text color */
-        border: 2px solid #333; /* Border color */
-        border-radius: 5px; /* Rounded corners */
-        cursor: pointer;
-        font-size: 14px;
-    }
-
-    /* Hover effect */
-    #theme-toggle:hover {
-        background-color: #f0f0f0; /* Lighter background color on hover */
-    }
-
-    /* Active (pressed) state */
-    #theme-toggle:active {
-        background-color: #ccc; /* Darker background color when pressed */
-    }
-
-    /* Dark mode styles */
-    [data-theme="dark"] #theme-toggle {
-        background-color: #333; /* Dark mode background color */
-        color: #fff; /* Dark mode text color */
-        border-color: #fff; /* Border color */
-    }
-
-    /* Hide the dark mode icon by default */
-    #theme-icon-dark {
-        display: none;
-    }
-</style>

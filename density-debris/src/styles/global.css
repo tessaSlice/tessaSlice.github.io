@@ -11,19 +11,31 @@ code {
 }
 
 :root {
-    /* Default light mode styles */
     --background-color: #ffffff;
+    /* Light mode background color */
     --text-color: #333333;
+    /* Light mode text color */
     --button-background-color: #ffffff;
+    /* Light mode button background color */
     --button-text-color: #333333;
+    /* Light mode button text color */
+
+    --nav-background-color: #ffffff;
+    /* Light mode nav background color */
 
     /* Dark mode styles */
     --dark-background-color: #333333;
+    /* Dark mode background color */
     --dark-text-color: #ffffff;
+    /* Dark mode text color */
     --dark-button-background-color: #333333;
+    /* Dark mode button background color */
     --dark-button-text-color: #ffffff;
-}
+    /* Dark mode button text color */
 
+    --dark-nav-background-color: #333333;
+    /* Dark mode nav background color */
+}
 
 body {
     margin: 0 auto;
@@ -120,5 +132,106 @@ h1 {
     .project-cards-container .project-card {
         flex: 1 1 100%;
         /* Makes the cards stack vertically on smaller screens */
+    }
+}
+
+/* Styles for the navigation container */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+/* Styles for the hamburger menu */
+.hamburger-menu {
+    display: none;
+    /* Hidden by default */
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    /* Ensure the hamburger menu is above other content */
+}
+
+/* Styles for the toggle button */
+#theme-toggle {
+    padding: 0.5rem 1rem;
+    background-color: var(--button-background-color);
+    color: var(--button-text-color);
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Hover effect */
+#theme-toggle:hover {
+    background-color: #f0f0f0;
+    /* Lighter background color on hover */
+}
+
+/* Active (pressed) state */
+#theme-toggle:active {
+    background-color: #ccc;
+    /* Darker background color when pressed */
+}
+
+/* Dark mode styles */
+[data-theme="dark"] #theme-toggle {
+    background-color: var(--dark-button-background-color);
+    /* Dark mode button background color */
+    color: var(--dark-button-text-color);
+    /* Dark mode button text color */
+    border-color: var(--dark-button-text-color);
+    /* Dark mode button border color */
+}
+
+/* Hide the dark mode icon by default */
+#theme-icon-dark {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        /* Hidden by default on smaller screens */
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--nav-background-color);
+        /* Light mode nav background color */
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        padding: 1rem 0;
+        z-index: 1;
+        /* Ensure the navigation is above other content but below the hamburger menu */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* Optional: Add shadow for better visibility */
+    }
+
+    .nav-links.expanded {
+        display: flex;
+        /* Show when expanded */
+        background-color: var(--nav-background-color);
+        /* Light mode nav background color */
+    }
+
+    [data-theme="dark"] .nav-links,
+    [data-theme="dark"] .nav-links.expanded {
+        background-color: var(--dark-nav-background-color);
+        /* Dark mode nav background color */
+    }
+
+    .hamburger-menu {
+        display: block;
+        /* Show hamburger menu on smaller screens */
+    }
+
+    .nav-links a,
+    #theme-toggle {
+        padding: 1rem;
+        text-align: center;
     }
 }

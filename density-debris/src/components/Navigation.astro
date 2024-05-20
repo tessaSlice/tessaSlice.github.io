@@ -3,10 +3,10 @@ import "../styles/global.css";
 ---
 
 <div class="nav-container">
-    <button class="hamburger-menu" id="hamburger-menu">
-        &#9776; <!-- Hamburger icon -->
+    <button class="hamburger-menu" aria-label="Menu">
+        &#9776; <!-- Unicode character for hamburger menu icon -->
     </button>
-    <div class="nav-links" id="nav-links">
+    <div class="nav-links">
         <a href="/">Home</a>
         <a href="/project-home.html">Projects</a>
         <a href="/resume/">Resume/CV</a>
@@ -87,8 +87,7 @@ import "../styles/global.css";
     }
 
     // Toggle navigation links visibility on hamburger menu click
-    document.getElementById("hamburger-menu").addEventListener("click", () => {
-        const navLinks = document.getElementById("nav-links");
-        navLinks.classList.toggle("expanded");
+    document.querySelector(".hamburger-menu").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("expanded");
     });
 </script>

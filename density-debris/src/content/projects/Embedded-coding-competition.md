@@ -1,4 +1,5 @@
 ---
+# TODO: add an emoji/image to represent my project
 name: 'Embedded Coding Competition'
 caption: "Cracking a safe with an Arduino!"
 description: '[TODO add summary from MD]'
@@ -7,10 +8,6 @@ languages:
 themes:
   - Arduino
   - Embedded
-image:
-    url: 'https://docs.astro.build/assets/full-logo-light.png'
-    alt: 'The full Astro logo.'
-tags: ["astro", "blogging", "learning in public"]
 github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"
 ---
 

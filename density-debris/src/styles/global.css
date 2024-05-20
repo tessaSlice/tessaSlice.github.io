@@ -101,3 +101,24 @@ h1 {
         border-radius: 10px;
     }
 }
+
+.project-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensures the cards wrap to the next line if they exceed the container width */
+    gap: 1.5rem;
+    /* Adds some space between the cards */
+}
+
+.project-cards-container .project-card {
+    flex: 1 1 calc(50% - 1rem);
+    /* Adjusts the width of each card to take up 50% of the container's width minus the gap */
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .project-cards-container .project-card {
+        flex: 1 1 100%;
+        /* Makes the cards stack vertically on smaller screens */
+    }
+}

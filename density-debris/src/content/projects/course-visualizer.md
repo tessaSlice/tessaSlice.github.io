@@ -1,7 +1,7 @@
 ---
 # TODO: add an emoji/image to represent my project
-name: 'Embedded Coding Competition'
-caption: "Cracking a safe with an Arduino!"
+name: 'Course Visualizer'
+caption: "Directed graphs are neat!"
 description: '[TODO add summary from MD]'
 languages:
   - JavaScript

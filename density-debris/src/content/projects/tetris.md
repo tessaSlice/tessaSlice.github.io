@@ -1,6 +1,6 @@
 ---
-# TODO: add an emoji/image to represent my project
 name: 'Tetris'
+icon: 'tetris'
 caption: "A classic"
 description: '[TODO add summary from MD]'
 languages:

@@ -1,6 +1,6 @@
 ---
-# TODO: add an emoji/image to represent my project
 name: 'Embedded Coding Competition'
+icon: 'circuit'
 caption: "Cracking a safe with an Arduino!"
 description: '[TODO add summary from MD]'
 languages:

@@ -1,6 +1,6 @@
 ---
-# TODO: add an emoji/image to represent my project
 name: 'Course Visualizer'
+icon: 'flowchart'
 caption: "Directed graphs are neat!"
 description: '[TODO add summary from MD]'
 languages:

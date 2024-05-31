@@ -2,6 +2,7 @@
 import "../styles/project-card.css";
 import ProjectTags from "./ProjectTags.astro";
 import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
 
 const projects = await getCollection("projects");
 ---
@@ -23,7 +24,9 @@ const projects = await getCollection("projects");
             <div class="content">
                 <div class="item">
                     <div class="icon-container">
-                        <div class="icon">🚀</div>
+                        <div class="icon">
+                            <Icon name={project.data.icon} />
+                        </div>
                     </div>
                     <div class="text">
                         <h3>{project.data.name}</h3>

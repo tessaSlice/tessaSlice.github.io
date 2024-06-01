@@ -1,7 +1,7 @@
 ---
-name: 'Embedded Coding Competition'
+name: 'P.E.T.E.R.M.A.N.'
 icon: 'circuit'
-caption: "Cracking a safe with an Arduino!"
+caption: "Cracking a safe with an Arduino"
 description: '[TODO add summary from MD]'
 languages:
   - C
@@ -13,11 +13,11 @@ github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"
 
 # Inspiration
 
-[TBD]
+[TODO: add background about competition]
 
 # How I did it
 
-[TBD]
+[TODO]
 
 # Check it out!
 

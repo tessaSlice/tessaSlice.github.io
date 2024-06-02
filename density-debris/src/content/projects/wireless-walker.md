@@ -2,12 +2,12 @@
 name: 'Wireless Walker'
 icon: 'walking_cane'
 caption: "SpartaHack 8"
-description: '[TODO add summary from MD]'
+description: 'Prototype of an ultrasonic walking cane made with Arduino components and an Android app.'
 languages:
   - Arduino
-  - Java
 themes:
-  - Android Studio
+  - Arduino
+  - Bluetooth
 github_link: "https://github.com/Granto1/SpartaHack2023"
 ---
 
@@ -15,7 +15,7 @@ github_link: "https://github.com/Granto1/SpartaHack2023"
 
 [TODO]
 
-# How I did it
+# How we did it
 
 [TODO]
 

@@ -6,8 +6,6 @@ description: 'Website built with React, Vite, and Flask. We integrated multiple 
 languages:
   - Python
   - GEMINI
-  - Vite
-  - React
 themes:
   - AI
   - LLM

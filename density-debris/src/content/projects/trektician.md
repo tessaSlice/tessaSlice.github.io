@@ -2,7 +2,7 @@
 name: 'Trektician'
 icon: 'trektician'
 caption: "MHacks x Google"
-description: '[TODO add summary from MD]'
+description: 'Website built with React, Vite, and Flask. We integrated multiple Google APIs into the backend.'
 languages:
   - Python
   - GEMINI
@@ -12,17 +12,21 @@ themes:
   - AI
   - LLM
   - Web dev
+  - Google API
 github_link: "https://github.com/tessaSlice/TrekTician"
 ---
 
 # Inspiration
 
-[TBD, look at project README.md for more inspiration]
+Traveling is rewarding; however, planning can be stressful. Many plans their trip with a travel agency due to convenience, while others choose to plan online because of flexibility. TrekTician gives a one-stop tour planner that generates all aspects of your travel plan tailored to your preferences, which provides BOTH convenience and flexibility.
 
-# How I did it
+# How we did it
 
-It's a work in progress, a lot of recorded details can be found in my GitHub repository. 
+This was a massive team effort, and I primarily worked on the backend aspect of the project. To make the backend, I used Flask and python. We used the python requests library to make GEMINI API calls and to retrieve images of the cities from the Google custom search engine API. 
+
+Other team members focused on working in the front-end, and more details on their work and documentation can be found in the GitHub repository or through the Devpost link below. 
 
 # Check it out!
 
-- [GitHub repository](https://github.com/tessaSlice/TrekTician): Contains source files of the project. 
+- [GitHub repository](https://github.com/tessaSlice/TrekTician): Contains source files of the project and all that I accomplished alongside three other students in just the span of two days. 
+- [Devpost](https://devpost.com/software/trektician-simplify-travel-planning-without-sacrificing-fun): Our hackathon submission which includes a video demo and details on our project. 

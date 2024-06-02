@@ -3,18 +3,15 @@ name: 'Trektician'
 icon: 'trektician'
 caption: "MHacks x Google"
 description: 'Website built with React, Vite, and Flask. We integrated multiple Google APIs into the backend.'
-languages:
+tags:
   - Python
   - GEMINI
-themes:
   - AI
   - LLM
   - Web dev
   - Google API
 github_link: "https://github.com/tessaSlice/TrekTician"
 ---
-
-# Inspiration
 
 Traveling is rewarding; however, planning can be stressful. Many plans their trip with a travel agency due to convenience, while others choose to plan online because of flexibility. TrekTician gives a one-stop tour planner that generates all aspects of your travel plan tailored to your preferences, which provides BOTH convenience and flexibility.
 

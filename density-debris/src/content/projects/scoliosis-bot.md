@@ -2,11 +2,10 @@
 name: 'Scoliosis Bot'
 icon: 'discord'
 caption: "A fun reminder"
-description: '[TODO add summary from MD]'
-languages:
+description: 'A Discord bot that would reminder users intermittently throughout the day of their posture. Made with Discord.js.'
+tags:
+  - Discord.js
   - JavaScript
-themes:
-  - Discord API
   - Bot
 github_link: "https://github.com/tessaSlice/Scoliosis-Bot"
 ---

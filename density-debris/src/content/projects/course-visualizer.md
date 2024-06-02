@@ -2,19 +2,17 @@
 name: 'Course Visualizer'
 icon: 'flowchart'
 caption: "Directed graphs are neat!"
-description: '[TODO add summary from MD]'
-languages:
+description: 'A website to visualize course prerequisites using a basic HTML, CSS, and JS frontend with a C++ server as the backend.'
+tags:
   - JavaScript
   - C++
+  - Elk.js
   - HTML
   - CSS
-themes:
   - Pistache
   - Web dev
 github_link: "https://github.com/tessaSlice/Course-prerequisite-visualizer"
 ---
-
-# Inspiration
 
 Through taking EECS 281, Data Structures & Algorithms, I gained a newfound appreciation for a variety of data structures besides the wonderful vector. 
 

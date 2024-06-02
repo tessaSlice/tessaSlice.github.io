@@ -2,17 +2,13 @@
 name: 'Tetris'
 icon: 'tetris'
 caption: "A classic"
-description: '[TODO add summary from MD]'
-languages:
+description: 'Tetris built from scratch using standard Java libraries.'
+tags:
   - Java
-themes:
-  - GUI
   - Game
   - Eclipse IDE
 github_link: "https://github.com/tessaSlice/Tetris"
 ---
-
-# Inspiration
 
 In high schoool, my computer science teacher challenged my class to create a game and then implement an AI algorithm. I chose Tetris. I implemented a genetic algorithm, but unfortunately the parameters are not tuned very well so the decisions made by the algorithm are effectively random. 
 
@@ -24,4 +20,5 @@ It's entirely made of Java. I used standard Java libraries such as `java.awt.Col
 
 # Check it out!
 
+[TODO! Actually add instructions for installing the game!]
 - [GitHub repository](https://github.com/tessaSlice/Tetris): Contains all of my source files and also instructions for how to install and play the game. 

@@ -1,11 +1,10 @@
 ---
 name: 'P.E.T.E.R.M.A.N.'
 icon: 'circuit'
-caption: "Cracking a safe with an Arduino"
-description: '[TODO add summary from MD]'
-languages:
+caption: "Cracking a safe"
+description: 'An Arduino device that would solve a series of safe-themed challenges from the Embedded Coding Competition hosted by Nexteer.'
+tags:
   - C
-themes:
   - Arduino
   - Embedded
 github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"

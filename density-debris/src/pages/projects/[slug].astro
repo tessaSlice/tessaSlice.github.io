@@ -21,8 +21,6 @@ const { Content } = await project.render();
 ---
 
 <ProjectLayout>
-    <!-- TODO: format this better! -->
-    <h1>{project.data.name}</h1>
-    <h2>{project.data.caption}</h2>
+    <h1 style="text-align: center;">{project.data.name}</h1>
     <Content />
 </ProjectLayout>

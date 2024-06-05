@@ -1,5 +1,6 @@
 ---
 import Header from "../components/Header.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <html lang="en">
@@ -8,12 +9,42 @@ import Header from "../components/Header.astro";
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>About Me</title>
+        <style>
+            .contact-button {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #007bff;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s;
+            }
+            .contact-button:hover {
+                background-color: #0056b3;
+            }
+        </style>
     </head>
     <body>
         <Header />
         <h1>About Me</h1>
-        <!-- add contact items, email, LinkedIn, GitHub -->
-        <!-- create components of projects that I have done, use Astro -->
-        <!-- create components of courses I've taken & my thoughts on it? -->
+        <p>Hi! I'm Amy Lee, a current student at the University of Michigan.</p>
+        <!-- Contact Buttons -->
+        <div>
+            <a href="mailto:your.email@example.com" class="contact-button"
+                ><Icon name="email" /> Email</a
+            >
+            <a
+                href="https://www.linkedin.com/in/yourprofile"
+                class="contact-button"
+                target="_blank"><Icon name="linkedin" /> LinkedIn</a
+            >
+            <a
+                href="https://github.com/yourusername"
+                class="contact-button"
+                target="_blank"><Icon name="github-dark" /> GitHub</a
+            >
+        </div>
     </body>
 </html>

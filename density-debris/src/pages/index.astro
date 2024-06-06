@@ -24,6 +24,10 @@ import { Icon } from "astro-icon/components";
             .contact-button:hover {
                 background-color: #0056b3;
             }
+            .icon {
+                vertical-align: middle;
+                margin-right: 8px;
+            }
         </style>
     </head>
     <body>
@@ -33,17 +37,18 @@ import { Icon } from "astro-icon/components";
         <!-- Contact Buttons -->
         <div>
             <a href="mailto:your.email@example.com" class="contact-button"
-                ><Icon name="email" /> Email</a
+                ><Icon name="email" class="icon" />Email</a
             >
             <a
                 href="https://www.linkedin.com/in/yourprofile"
                 class="contact-button"
-                target="_blank"><Icon name="linkedin" /> LinkedIn</a
+                target="_blank"><Icon name="linkedin" class="icon" />LinkedIn</a
             >
             <a
                 href="https://github.com/yourusername"
                 class="contact-button"
-                target="_blank"><Icon name="github-dark" /> GitHub</a
+                target="_blank"
+                ><Icon name="github-dark" class="icon" />GitHub</a
             >
         </div>
     </body>

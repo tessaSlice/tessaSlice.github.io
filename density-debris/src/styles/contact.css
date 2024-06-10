@@ -1,21 +1,52 @@
-/* styles for the contact buttons */
 .contact-button {
+    position: relative;
     display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
+    margin: 10px;
+    padding: 10px;
     text-decoration: none;
-    border-radius: 5px;
+    color: #000;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
     transition: background-color 0.3s;
 }
 
 .contact-button:hover {
-    background-color: #0056b3;
+    background-color: #eee;
 }
 
-.icon {
-    vertical-align: middle;
-    margin-right: 8px;
+.contact-button .tooltip {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    /* Position above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    /* Prevents text from wrapping */
+}
+
+.contact-button .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    /* At the bottom of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.contact-button:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
 }

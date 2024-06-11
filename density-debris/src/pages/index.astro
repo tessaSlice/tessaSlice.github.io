@@ -9,34 +9,36 @@ import "../styles/contact.css";
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>About Me</title>
+        <title>Index</title>
     </head>
     <body>
         <Header />
-        <h1>About Me</h1>
-        <p>Hi! I'm Amy Lee, a current student at the University of Michigan.</p>
-        <!-- Contact Buttons -->
-        <div>
-            <a href="mailto:amyrlee@umich.edu" class="contact-button">
-                <Icon name="email" class="icon" />
-                <span class="tooltip">Email</span>
-            </a>
-            <a
-                href="https://www.linkedin.com/in/amy-lee-umich"
-                class="contact-button"
-                target="_blank"
-            >
-                <Icon name="linkedin" class="icon" />
-                <span class="tooltip">LinkedIn</span>
-            </a>
-            <a
-                href="https://github.com/tessaSlice"
-                class="contact-button"
-                target="_blank"
-            >
-                <Icon name="github-dark" class="icon" />
-                <span class="tooltip">GitHub</span>
-            </a>
+        <div class="about-me-container">
+            <h1>About Me</h1>
+            <!-- Contact Buttons -->
+            <div class="contact-buttons">
+                <a href="mailto:amyrlee@umich.edu" class="contact-button">
+                    <Icon name="email" class="icon" />
+                    <span class="tooltip">Email</span>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/amy-lee-umich"
+                    class="contact-button"
+                    target="_blank"
+                >
+                    <Icon name="linkedin" class="icon" />
+                    <span class="tooltip">LinkedIn</span>
+                </a>
+                <a
+                    href="https://github.com/tessaSlice"
+                    class="contact-button"
+                    target="_blank"
+                >
+                    <Icon name="github-dark" class="icon" />
+                    <span class="tooltip">GitHub</span>
+                </a>
+            </div>
         </div>
+        <p>Hi! I'm Amy Lee, a current student at the University of Michigan.</p>
     </body>
 </html>

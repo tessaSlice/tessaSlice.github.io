@@ -1,3 +1,15 @@
+.about-me-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .contact-button {
     position: relative;
     display: inline-block;
@@ -25,20 +37,17 @@
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    /* Position above the button */
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
     white-space: nowrap;
-    /* Prevents text from wrapping */
 }
 
 .contact-button .tooltip::after {
     content: "";
     position: absolute;
     top: 100%;
-    /* At the bottom of the tooltip */
     left: 50%;
     transform: translateX(-50%);
     border-width: 5px;

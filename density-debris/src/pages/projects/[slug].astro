@@ -21,6 +21,10 @@ const { Content } = await project.render();
 ---
 
 <ProjectLayout>
-    <h1 style="text-align: center;">{project.data.name}</h1>
+    <div>
+        <!-- TODO: add an icon to back to projects! -->
+        <a href="../project-home.html">Back to Projects</a>
+        <h1 style="text-align: center;">{project.data.name}</h1>
+    </div>
     <Content />
 </ProjectLayout>

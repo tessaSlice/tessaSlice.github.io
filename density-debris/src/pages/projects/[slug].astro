@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
 
+import "../../styles/project-card.css";
+
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
     return projects.map((project) => ({
@@ -22,8 +24,7 @@ const { Content } = await project.render();
 
 <ProjectLayout>
     <div>
-        <!-- TODO: add an icon to back to projects! -->
-        <a href="../project-home.html">Back to Projects</a>
+        <a href="../project-home.html" class="learn-more">← Back to Projects</a>
         <h1 style="text-align: center;">{project.data.name}</h1>
     </div>
     <Content />

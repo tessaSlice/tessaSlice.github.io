@@ -23,9 +23,48 @@ const { Content } = await project.render();
 ---
 
 <ProjectLayout>
-    <div>
-        <a href="../project-home.html" class="learn-more">← Back to Projects</a>
-        <h1 style="text-align: center;">{project.data.name}</h1>
+    <div class="header-container">
+        <a href="../project-home.html" class="learn-more"
+            >← <span class="button-text">Back to Projects</span></a
+        >
+        <h1>{project.data.name}</h1>
     </div>
     <Content />
 </ProjectLayout>
+
+<style>
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    .header-container h1 {
+        margin: 0;
+        text-align: center;
+        flex: 1;
+    }
+
+    .header-container .learn-more {
+        margin: 0;
+        padding: 10px 15px;
+        background-color: #007acc;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .header-container .learn-more:hover {
+        background-color: #005fa3;
+    }
+
+    @media (max-width: 600px) {
+        .header-container .learn-more .button-text {
+            display: none;
+        }
+    }
+</style>

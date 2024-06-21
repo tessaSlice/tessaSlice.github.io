@@ -10,9 +10,7 @@ tags:
 github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"
 ---
 
-# Inspiration
-
-[TODO: add background about competition]
+During the summer of 2023, Nexteer hosted an embedded systems competition for students who lived in the region. I took this as an opportunity to learn more about how to use Arduinos. The competition theme was cracking a series of challenges, which would eventually crack open a lock and students would be awarded points. 
 
 # How I did it
 

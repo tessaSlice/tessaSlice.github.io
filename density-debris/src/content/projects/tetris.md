@@ -20,5 +20,4 @@ It's entirely made of Java. I used standard Java libraries such as `java.awt.Col
 
 # Check it out!
 
-[TODO! Actually add instructions for installing the game!]
-- [GitHub repository](https://github.com/tessaSlice/Tetris): Contains all of my source files and also instructions for how to install and play the game. 
+- [GitHub repository](https://github.com/tessaSlice/Tetris): Contains all of my source files and also instructions for how to install and play the game. There's an executable file that you can download from there too. 

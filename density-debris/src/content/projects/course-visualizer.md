@@ -18,11 +18,11 @@ Through taking EECS 281, Data Structures & Algorithms, I gained a newfound appre
 
 As I advance further into my education at U-M, I've realized that there's a limited amount of courses I can take but a seemingly unlimited amount of offerings that are extremely enticing. There's a massive trove of courses offered at U-M and I wanted there to exist some method to display the courses and their prerequisites properly. 
 
-Then I realized that the connections between courses can be represented in a directed graph, and that was the motivation for my desire to build this project.  
+Then I realized that the connections between courses can be represented in a directed graph, and that was the motivation for my desire to build this project. 
 
 # How I did it
 
-It's a work in progress, a lot of recorded details can be found in my GitHub repository. 
+It's a full stack project that I created from scratch. [TODO add more details]
 
 # Check it out!
 

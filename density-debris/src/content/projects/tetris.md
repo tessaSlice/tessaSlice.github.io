@@ -8,6 +8,7 @@ tags:
   - Game
   - Eclipse IDE
 github_link: "https://github.com/tessaSlice/Tetris"
+visible: True
 ---
 
 In high schoool, my computer science teacher challenged my class to create a game and then implement an AI algorithm. I chose Tetris. I implemented a genetic algorithm, but unfortunately the parameters are not tuned very well so the decisions made by the algorithm are effectively random. 

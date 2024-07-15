@@ -7,6 +7,7 @@ tags:
   - Arduino
   - Bluetooth
 github_link: "https://github.com/Granto1/SpartaHack2023"
+visible: True
 ---
 
 This is a project I did with other high school students for SpartaHack 8, a hackathon hosted at Michigan State University. 

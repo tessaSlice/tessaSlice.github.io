@@ -8,6 +8,7 @@ const projects = defineCollection({
     description: z.string(),
     tags: z.array(z.string()),
     github_link: z.string().url().optional(),
+    visible: z.boolean()
   }),
 });
 

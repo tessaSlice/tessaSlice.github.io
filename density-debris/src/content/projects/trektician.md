@@ -11,6 +11,7 @@ tags:
   - Web dev
   - Google API
 github_link: "https://github.com/tessaSlice/TrekTician"
+visible: True
 ---
 
 Traveling is rewarding; however, planning can be stressful. Many plans their trip with a travel agency due to convenience, while others choose to plan online because of flexibility. TrekTician gives a one-stop tour planner that generates all aspects of your travel plan tailored to your preferences, which provides BOTH convenience and flexibility.

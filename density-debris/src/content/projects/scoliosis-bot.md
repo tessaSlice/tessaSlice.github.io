@@ -8,6 +8,7 @@ tags:
   - JavaScript
   - Bot
 github_link: "https://github.com/tessaSlice/Scoliosis-Bot"
+visible: True
 ---
 
 # Inspiration

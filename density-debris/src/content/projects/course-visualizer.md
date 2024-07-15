@@ -12,6 +12,7 @@ tags:
   - Pistache
   - Web dev
 github_link: "https://github.com/tessaSlice/Course-prerequisite-visualizer"
+visible: False
 ---
 
 Through taking EECS 281, Data Structures & Algorithms, I gained a newfound appreciation for a variety of data structures besides the wonderful vector. 

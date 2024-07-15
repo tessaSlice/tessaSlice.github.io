@@ -7,7 +7,8 @@ import "../styles/global.css";
     <div class="nav-links">
         <a href="/">Home</a>
         <a href="/project-home.html">Projects</a>
-        <a href="/resume">Resume/CV</a>
+        <!-- TODO: include an icon for the resume page -->
+        <a href="/resume">Resume</a>
         <button id="theme-toggle">
             <span id="theme-icon-light">&#9728;</span>
             <span id="theme-icon-dark">&#9790;</span>
@@ -19,15 +20,9 @@ import "../styles/global.css";
     function toggleTheme() {
         const currentTheme =
             document.documentElement.getAttribute("data-theme") || "light";
-        // TODO: get rid of after debugging
-        console.log("Current theme: " + currentTheme);
-        console.log("Saved theme: " + localStorage.getItem("theme"));
         const newTheme = currentTheme === "light" ? "dark" : "light";
-        // TODO: remove after debugging!
-        console.log("New theme set to: " + newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
-        console.log("New saved theme set to: " + localStorage.getItem("theme"));
         updateStyles(newTheme);
         updateIcon(newTheme);
     }

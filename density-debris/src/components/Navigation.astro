@@ -19,9 +19,15 @@ import "../styles/global.css";
     function toggleTheme() {
         const currentTheme =
             document.documentElement.getAttribute("data-theme") || "light";
+        // TODO: get rid of after debugging
+        console.log("Current theme: " + currentTheme);
+        console.log("Saved theme: " + localStorage.getItem("theme"));
         const newTheme = currentTheme === "light" ? "dark" : "light";
+        // TODO: remove after debugging!
+        console.log("New theme set to: " + newTheme);
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
+        console.log("New saved theme set to: " + localStorage.getItem("theme"));
         updateStyles(newTheme);
         updateIcon(newTheme);
     }
@@ -37,13 +43,6 @@ import "../styles/global.css";
             iconDark.style.display = "inline";
         }
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const savedTheme = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", savedTheme);
-        updateStyles(savedTheme);
-        updateIcon(savedTheme);
-    });
 
     document
         .getElementById("theme-toggle")

@@ -119,6 +119,10 @@ button#theme-toggle {
     background-color: #cfe7ff;
 }
 
+.nav-icon {
+    font-size: 40px;
+}
+
 .home-icon.mobile {
     display: none;
 }

@@ -6,10 +6,14 @@ import { Icon } from "astro-icon/components";
 <div class="nav-container">
     <button class="hamburger-menu" aria-label="Menu"> &#9776; </button>
     <div class="nav-left">
-        <a href="/"><Icon name="home" class="icon" /></a>
+        <a href="/" class="home-icon"><Icon name="home" class="icon" /></a>
     </div>
     <div class="nav-right">
         <div class="nav-links">
+            <!-- Hidden home icon for larger screens, visible in hamburger menu -->
+            <a href="/" class="home-icon mobile"
+                ><Icon name="home" class="icon" /></a
+            >
             <a href="mailto:amyrlee@umich.edu">
                 <Icon name="email" class="icon" />
             </a>

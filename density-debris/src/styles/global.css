@@ -119,6 +119,10 @@ button#theme-toggle {
     background-color: #cfe7ff;
 }
 
+.home-icon.mobile {
+    display: none;
+}
+
 /* Hamburger Menu Styles */
 .hamburger-menu {
     display: none;
@@ -203,10 +207,17 @@ button#theme-toggle {
         color: var(--button-text-color);
     }
 
-    .nav-left,
+    .nav-left {
+        display: none;
+    }
+
     .nav-right {
         flex-direction: column;
         align-items: center;
+    }
+
+    .home-icon.mobile {
+        display: block;
     }
 
     .nav-links a,

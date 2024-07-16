@@ -114,13 +114,21 @@ button#theme-toggle {
     text-transform: uppercase;
 }
 
-.nav-links a:hover,
-.nav-links a:focus {
-    background-color: #cfe7ff;
-}
-
 .nav-icon {
     font-size: 40px;
+    transition: transform 0.5s ease;
+}
+
+.tilt-left:hover {
+    transform: rotate(15deg);
+}
+
+.tilt-right:hover {
+    transform: rotate(-15deg);
+}
+
+.home-icon {
+    transition: transform 0.5s ease;
 }
 
 .home-icon.mobile {

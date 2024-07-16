@@ -7,24 +7,26 @@ import { Icon } from "astro-icon/components";
     <button class="hamburger-menu" aria-label="Menu"> &#9776; </button>
     <div class="nav-left">
         <!-- TODO: figure out why this is purple -->
-        <a href="/" class="home-icon"><Icon name="home" class="nav-icon" /></a>
+        <a href="/" class="home-icon tilt-left"><Icon name="home" class="nav-icon" /></a>
     </div>
     <div class="nav-right">
         <div class="nav-links">
             <!-- Hidden home icon for larger screens, visible in hamburger menu -->
             <a href="/" class="home-icon mobile"
-                ><Icon name="home" class="nav-icon" /></a
+                ><Icon name="home" class="nav-icon tile-left" /></a
             >
+
+            <a href="/resume/"><Icon name="resume" class="nav-icon tilt-left" /></a>
+
             <a href="mailto:amyrlee@umich.edu">
-                <Icon name="email" class="nav-icon" />
+                <Icon name="email" class="nav-icon tilt-right" />
             </a>
             <a href="https://www.linkedin.com/in/amy-lee-umich" target="_blank">
-                <Icon name="linkedin" class="nav-icon" />
+                <Icon name="linkedin" class="nav-icon tilt-right" />
             </a>
             <a href="https://github.com/tessaSlice" target="_blank">
-                <Icon name="github-dark" class="nav-icon" />
+                <Icon name="github-dark" class="nav-icon tilt-right" />
             </a>
-            <a href="/resume/"><Icon name="resume" class="nav-icon" /></a>
             <button id="theme-toggle">
                 <span id="theme-icon-light">&#9728;</span>
                 <span id="theme-icon-dark">&#9790;</span>

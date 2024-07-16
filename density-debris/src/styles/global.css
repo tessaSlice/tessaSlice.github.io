@@ -120,11 +120,11 @@ button#theme-toggle {
 }
 
 .tilt-left:hover {
-    transform: rotate(15deg);
+    transform: rotate(20deg);
 }
 
 .tilt-right:hover {
-    transform: rotate(-15deg);
+    transform: rotate(-20deg);
 }
 
 .home-icon {

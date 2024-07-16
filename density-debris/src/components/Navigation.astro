@@ -5,35 +5,26 @@ import { Icon } from "astro-icon/components";
 
 <div class="nav-container">
     <button class="hamburger-menu" aria-label="Menu"> &#9776; </button>
-    <div class="nav-links">
-        <!-- TODO: move this to the left -->
+    <div class="nav-left">
         <a href="/"><Icon name="home" class="icon" /></a>
-
-        <!-- TODO: move the rest of these to the right -->
-        <a href="mailto:amyrlee@umich.edu" class="contact-button">
-            <Icon name="email" class="icon" />
-        </a>
-        <a
-            href="https://www.linkedin.com/in/amy-lee-umich"
-            class="contact-button"
-            target="_blank"
-        >
-            <Icon name="linkedin" class="icon" />
-        </a>
-        <a
-            href="https://github.com/tessaSlice"
-            class="contact-button"
-            target="_blank"
-        >
-            <Icon name="github-dark" class="icon" />
-        </a>
-
-        <a href="/resume/"><Icon name="resume" class="icon" /></a>
-
-        <button id="theme-toggle">
-            <span id="theme-icon-light">&#9728;</span>
-            <span id="theme-icon-dark">&#9790;</span>
-        </button>
+    </div>
+    <div class="nav-right">
+        <div class="nav-links">
+            <a href="mailto:amyrlee@umich.edu">
+                <Icon name="email" class="icon" />
+            </a>
+            <a href="https://www.linkedin.com/in/amy-lee-umich" target="_blank">
+                <Icon name="linkedin" class="icon" />
+            </a>
+            <a href="https://github.com/tessaSlice" target="_blank">
+                <Icon name="github-dark" class="icon" />
+            </a>
+            <a href="/resume/"><Icon name="resume" class="icon" /></a>
+            <button id="theme-toggle">
+                <span id="theme-icon-light">&#9728;</span>
+                <span id="theme-icon-dark">&#9790;</span>
+            </button>
+        </div>
     </div>
 </div>
 

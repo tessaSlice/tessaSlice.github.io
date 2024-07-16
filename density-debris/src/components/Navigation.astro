@@ -1,14 +1,34 @@
 ---
 import "../styles/global.css";
+import { Icon } from "astro-icon/components";
 ---
 
 <div class="nav-container">
     <button class="hamburger-menu" aria-label="Menu"> &#9776; </button>
     <div class="nav-links">
         <a href="/">Home</a>
-        <a href="/project-home.html">Projects</a>
         <!-- TODO: include an icon for the resume page -->
-        <a href="/resume">Resume</a>
+        <a href="/resume/">Resume</a>
+
+        <!-- Contact buttons -->
+        <a href="mailto:amyrlee@umich.edu" class="contact-button">
+            <Icon name="email" class="icon" />
+        </a>
+        <a
+            href="https://www.linkedin.com/in/amy-lee-umich"
+            class="contact-button"
+            target="_blank"
+        >
+            <Icon name="linkedin" class="icon" />
+        </a>
+        <a
+            href="https://github.com/tessaSlice"
+            class="contact-button"
+            target="_blank"
+        >
+            <Icon name="github-dark" class="icon" />
+        </a>
+
         <button id="theme-toggle">
             <span id="theme-icon-light">&#9728;</span>
             <span id="theme-icon-dark">&#9790;</span>

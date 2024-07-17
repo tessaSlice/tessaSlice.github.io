@@ -2,7 +2,7 @@
 name: 'Trektician'
 icon: 'trektician'
 caption: "MHacks x Google"
-description: 'Website built with React, Vite, and Flask. We integrated multiple Google APIs into the backend.'
+description: 'Website built with React, Vite, and Flask with multiple integrated Google APIs in the backend.'
 tags:
   - Python
   - GEMINI

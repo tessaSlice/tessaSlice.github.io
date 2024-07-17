@@ -23,7 +23,7 @@ Then I realized that the connections between courses can be represented in a dir
 
 # How I did it
 
-It's a full stack project that I created from scratch. The front end is composed of JavaScript, HTML, and CSS. The back end is made of C++ and Pistache. [TODO add more details]
+It's a full stack project that I created from scratch. The front end is composed of JavaScript, HTML, and CSS. The back end is made of C++ and Pistache. [TODO add more details - WIP]
 
 # Check it out!
 

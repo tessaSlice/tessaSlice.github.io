@@ -9,5 +9,4 @@ export default defineConfig({
     collections: './src/content/config.ts' // Point to your content config file
   },
   site: 'https://tessaSlice.github.io',
-  base: '/density-debris'
 });

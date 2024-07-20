@@ -120,12 +120,14 @@ button#theme-toggle {
     transition: transform 0.5s ease;
 }
 
-.tilt-left:hover {
-    transform: rotate(20deg);
-}
+@media (prefers-reduced-motion: no-preference) {
+    .tilt-left:hover {
+        transform: rotate(20deg);
+    }
 
-.tilt-right:hover {
-    transform: rotate(-20deg);
+    .tilt-right:hover {
+        transform: rotate(-20deg);
+    }
 }
 
 .home-icon {

@@ -6,7 +6,7 @@ description: 'Prototype of an ultrasonic walking cane made with Arduino componen
 tags:
   - Arduino
   - Bluetooth
-github_link: "https://github.com/Granto1/SpartaHack2023"
+github_link: "https://github.com/tessaSlice/wireless-walker"
 visible: True
 ---
 

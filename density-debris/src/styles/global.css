@@ -243,3 +243,42 @@ button#theme-toggle {
         text-align: center;
     }
 }
+
+.nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+
+.nav-text {
+    visibility: hidden;
+    opacity: 0;
+    margin-left: 0;
+    /* Prevent any margin from affecting the layout */
+    position: absolute;
+    /* Position it directly over the icon */
+    white-space: nowrap;
+    /* Prevent the text from wrapping */
+    transition: visibility 0s 0.2s, opacity 0.2s linear;
+}
+
+.nav-item:hover .nav-icon {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0s;
+    /* Make sure the icon hides immediately */
+}
+
+.nav-item:hover .nav-text {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+    /* Make sure the text shows immediately */
+}

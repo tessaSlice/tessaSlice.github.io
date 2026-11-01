@@ -36,9 +36,12 @@ const visibleProjects = projects.filter((project) => project.data.visible);
                         <ProjectTags tags={project.data.tags} />
                     </div>
                 </div>
-                <a href={`/projects/${project.slug}`} class="learn-more">
-                    Learn more
-                </a>
+                {/*
+                    Tile link to the project page is off for now. The page
+                    still lives at /projects/<slug>. Put this anchor back to
+                    make the card open it again:
+                    <a href={`/projects/${project.slug}`} class="learn-more" aria-label={`Learn more about ${project.data.name}`}>Learn more</a>
+                */}
             </div>
         </div>
     ))

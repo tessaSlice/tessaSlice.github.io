@@ -9,16 +9,16 @@ import { Icon } from "astro-icon/components";
             <button class="hamburger-menu" aria-label="Menu"> &#9776; </button>
             <div class="nav-left">
                 <a href="/" class="home-icon tilt-left">
-                    <Icon name="home" class="nav-icon" />
+                    <Icon name="home" class="nav-icon" is:inline />
                 </a>
             </div>
             <div class="nav-right">
                 <div class="nav-links">
                     <a href="/" class="home-icon mobile">
-                        <Icon name="home" class="nav-icon tilt-left" />
+                        <Icon name="home" class="nav-icon tilt-left" is:inline />
                     </a>
 
-                    <a href="/resume/">
+                    <a href="/resume/" class="nav-resume">
                         <span class="nav-item">
                             <Icon name="resume" class="nav-icon tilt-left" />
                             <span class="nav-text">Resume</span>
@@ -54,9 +54,13 @@ import { Icon } from "astro-icon/components";
                         </span>
                     </a>
 
-                    <button id="theme-toggle">
-                        <span id="theme-icon-light">&#9728;</span>
-                        <span id="theme-icon-dark">&#9790;</span>
+                    <button id="theme-toggle" aria-label="Toggle color theme">
+                        <span id="theme-icon-light">
+                            <Icon name="light-mode" class="nav-icon" is:inline />
+                        </span>
+                        <span id="theme-icon-dark">
+                            <Icon name="dark-mode" class="nav-icon" is:inline />
+                        </span>
                     </button>
                 </div>
             </div>
@@ -79,11 +83,11 @@ import { Icon } from "astro-icon/components";
         const iconLight = document.getElementById("theme-icon-light");
         const iconDark = document.getElementById("theme-icon-dark");
         if (theme === "light") {
-            iconLight.style.display = "inline";
+            iconLight.style.display = "inline-flex";
             iconDark.style.display = "none";
         } else {
             iconLight.style.display = "none";
-            iconDark.style.display = "inline";
+            iconDark.style.display = "inline-flex";
         }
     }
 

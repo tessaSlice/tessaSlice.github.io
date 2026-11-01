@@ -1,41 +1,39 @@
 /* Project Cards Container Styles */
 .project-cards-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
-    justify-content: center;
-    /* Center align items horizontally */
+    width: 100%;
 }
 
 /* Project Card Styles */
 .project-card {
     position: relative;
-    flex: 1 1 calc(50% - 1.5rem);
-    /* Two cards per row */
-    max-width: 300px;
-    /* Ensure the card does not exceed this width */
-    border: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: none;
+    border: 2px solid var(--card-border);
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-surface);
+    box-shadow: 0px 4px 10px rgba(70, 48, 24, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 20px;
     box-sizing: border-box;
+    cursor: default;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 18px rgba(70, 48, 24, 0.14);
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .project-card {
-        flex: 1 1 100%;
-    }
+[data-theme="dark"] .project-card:hover {
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.32);
 }
+
+
 
 .icon-container {
     position: relative;
@@ -46,18 +44,23 @@
 
 .github-link {
     position: absolute;
-    top: -15px;
-    right: -15px;
+    top: -16px;
+    right: -16px;
     overflow: visible;
-    z-index: 1;
+    z-index: 2;
+    color: #7c3aed;
+    cursor: pointer;
 }
 
 .github-icon {
-    width: 32px;
-    height: auto;
-    border: 1px solid #ccc;
+    width: 34px;
+    height: 34px;
+    padding: 3px;
+    box-sizing: border-box;
+    color: #7c3aed;
+    border: 2px solid #7c3aed;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #fffaf4;
 }
 
 .content {
@@ -112,23 +115,42 @@
 }
 
 .tags-container .tag {
-    background-color: #f1f1f1;
-    color: #333;
+    background-color: var(--tag-background);
+    color: var(--tag-text);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 12px;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 1px solid var(--tag-border);
     margin-right: 5px;
     margin-bottom: 8px;
+}
+
+/* Kept for when the card link in ProjectCard.astro is restored.
+   Project pages reuse .learn-more for the back link, so this stays scoped to the card. */
+.project-card .learn-more {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    border-radius: 10px;
+}
+
+.project-card .learn-more:hover,
+.project-card .learn-more:focus {
+    background: transparent;
 }
 
 .learn-more {
     display: block;
     margin-top: 15px;
     padding: 10px 15px;
-    background-color: #007acc;
-    color: #fff;
+    background-color: var(--accent);
+    color: var(--accent-ink);
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
@@ -136,5 +158,6 @@
 }
 
 .learn-more:hover {
-    background-color: #005fa3;
+    background-color: var(--accent-hover);
+    color: var(--accent-ink);
 }

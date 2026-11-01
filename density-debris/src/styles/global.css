@@ -3,43 +3,139 @@
     box-sizing: border-box;
 }
 
-/* Root Variables */
-:root {
-    /* Light mode styles */
-    --default-background-color: #ffffff;
-    --default-text-color: #333333;
-    --default-button-background-color: #ffffff;
-    --default-button-text-color: #333333;
-    --nav-background-color: #ffffff;
-
-    /* Dark mode styles */
-    --dark-background-color: #333333;
-    --dark-text-color: #ffffff;
-    --dark-button-background-color: #333333;
-    --dark-button-text-color: #ffffff;
-    --dark-nav-background-color: #333333;
+/* Comfortaa is a rounded, casual face. Files are self-hosted under public/fonts. */
+@font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
+@font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-SemiBold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Comfortaa";
+    src: url("/fonts/Comfortaa-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Root Variables */
+:root {
+    /* Light mode: warm paper and ink, not pure white on gray. */
+    --default-background-color: #f3eee6;
+    --default-text-color: #3a332c;
+    --default-button-background-color: #f3eee6;
+    --default-button-text-color: #3a332c;
+
+    /* Top bar stays the inverse of the page so the icons read against it. */
+    --nav-background-color: #2c261f;
+    --nav-text-color: #f6f1e8;
+    --nav-hover-background-color: #40382f;
+
+    /* Dark mode: espresso page, cream type. */
+    --dark-background-color: #241f1b;
+    --dark-text-color: #f3ece3;
+    --dark-button-background-color: #241f1b;
+    --dark-button-text-color: #f3ece3;
+
+    /* Shared surfaces. Dark mode overrides these below. GitHub purple stays #7c3aed. */
+    --card-surface: #fffaf4;
+    --card-border: #7d6b58;
+    --tag-background: #efe4d2;
+    --tag-text: #3a332c;
+    --tag-border: #7d6b58;
+    --accent: #a3472f;
+    --accent-hover: #873b26;
+    --accent-ink: #fffaf4;
+}
+
+/* Dark page gets a cream bar. */
+[data-theme="dark"] {
+    --nav-background-color: #f3ece3;
+    --nav-text-color: #2c261f;
+    --nav-hover-background-color: #e6d9c8;
+
+    --card-surface: #312b26;
+    --card-border: #cfc1ad;
+    --tag-background: #3e362f;
+    --tag-text: #f3ece3;
+    --tag-border: #cfc1ad;
+    --accent: #f0b090;
+    --accent-hover: #f7c7b0;
+    --accent-ink: #2c261f;
+}
+
+/* Theme is set on the document element. This matches if it is ever set on body. */
 body[data-theme='dark'] {
-    --background-color: #333333;
-    --text-color: #ffffff;
+    --background-color: #241f1b;
+    --text-color: #f3ece3;
+}
+
+html {
+    min-height: 100%;
+    background-color: var(--background-color, var(--default-background-color));
+    font-family: "Comfortaa", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
 /* Body Styles */
 body {
-    margin: 0 auto;
+    margin: 0;
     width: 100%;
-    max-width: 80ch;
-    padding: 1rem;
+    max-width: none;
+    min-height: 100vh;
+    padding: 0 1.5rem 2rem;
     line-height: 1.5;
     background-color: var(--background-color);
     color: var(--text-color);
+    font-family: inherit;
     font-size: 16px;
 }
 
-/* Code Styles */
-code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+button,
+input,
+textarea,
+select,
+code,
+pre,
+kbd,
+samp {
+    font-family: inherit;
+}
+
+::selection {
+    background-color: #e7c4b4;
+    color: #2c261f;
+}
+
+[data-theme="dark"] ::selection {
+    background-color: #a3472f;
+    color: #fffaf4;
+}
+
+main a:any-link {
+    color: var(--accent);
+}
+
+main a:hover,
+main a:focus-visible {
+    color: var(--accent-hover);
 }
 
 /* Heading Styles */
@@ -50,30 +146,29 @@ h1 {
 
 /* Button Styles */
 button#theme-toggle {
-    padding: 0.5rem 1rem;
-    background-color: var(--button-background-color);
-    color: var(--button-text-color);
+    padding: 0;
+    background-color: transparent;
+    color: var(--nav-text-color);
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    line-height: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     border-width: 0px;
 }
 
-#theme-toggle:hover {
-    background-color: #f0f0f0;
+#theme-icon-light,
+#theme-icon-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
 }
 
+#theme-toggle:hover,
 #theme-toggle:active {
-    background-color: #ccc;
-}
-
-[data-theme="dark"] #theme-toggle {
-    background-color: var(--dark-button-background-color);
-    color: var(--dark-button-text-color);
-    border-color: var(--dark-button-text-color);
+    background-color: var(--nav-hover-background-color);
 }
 
 /* Hide the dark mode icon by default */
@@ -111,13 +206,21 @@ button#theme-toggle {
     text-align: center;
     padding: 10px 0;
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--nav-text-color);
+}
+
+/* Resume link is hidden for now. The /resume/ page is still available. */
+.nav-links a.nav-resume {
+    display: none;
 }
 
 .nav-icon {
     font-size: 40px;
+    color: var(--nav-text-color);
     transition: transform 0.5s ease;
 }
 
@@ -133,7 +236,7 @@ button#theme-toggle {
 
 .home-icon {
     transition: transform 0.5s ease;
-    color: var(--button-text-color);
+    color: var(--nav-text-color);
 }
 
 .home-icon.mobile {
@@ -148,6 +251,15 @@ button#theme-toggle {
     border: none;
     cursor: pointer;
     z-index: 2;
+    color: var(--nav-text-color);
+}
+
+/* Inverted bar across the full width of the viewport. */
+header {
+    background-color: var(--nav-background-color);
+    color: var(--nav-text-color);
+    margin: 0 -1.5rem 1.5rem;
+    padding: 0.35rem 1.5rem;
 }
 
 @media screen and (min-width: 360px) {
@@ -156,12 +268,12 @@ button#theme-toggle {
         justify-content: space-around;
         align-items: center;
         padding: 1rem;
-        background-color: var(--background-color);
-        color: var(--text-color);
+        background-color: transparent;
+        color: var(--nav-text-color);
     }
 
     .nav-links a {
-        color: var(--text-color);
+        color: var(--nav-text-color);
         text-decoration: none;
         margin: 0 10px;
         transition: background-color 1s ease;
@@ -169,26 +281,17 @@ button#theme-toggle {
         padding: 15px 20px;
         border-radius: 10px;
     }
-}
 
-/* Project Card Styles */
-.project-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.project-cards-container .project-card {
-    flex: 1 1 calc(50% - 1rem);
-    box-sizing: border-box;
+    /* Same gap and hit area as the icon links beside it. */
+    button#theme-toggle {
+        margin: 0 10px;
+        padding: 15px 20px;
+        border-radius: 10px;
+    }
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .project-cards-container .project-card {
-        flex: 1 1 100%;
-    }
-
     .nav-links {
         display: none;
         flex-direction: column;
@@ -208,20 +311,13 @@ button#theme-toggle {
     .nav-links.expanded {
         display: flex;
         background-color: var(--nav-background-color);
-    }
-
-    [data-theme="dark"] .nav-links,
-    [data-theme="dark"] .nav-links.expanded {
-        background-color: var(--dark-nav-background-color);
+        color: var(--nav-text-color);
     }
 
     .hamburger-menu {
         display: block;
         z-index: 3;
-    }
-
-    [data-theme="dark"] .hamburger-menu {
-        color: var(--button-text-color);
+        color: var(--nav-text-color);
     }
 
     .nav-left {
@@ -238,7 +334,7 @@ button#theme-toggle {
     }
 
     .nav-links a,
-    #theme-toggle {
+    button#theme-toggle {
         padding: 1rem;
         text-align: center;
     }
@@ -266,6 +362,13 @@ button#theme-toggle {
     /* Position it directly over the icon */
     white-space: nowrap;
     /* Prevent the text from wrapping */
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-transform: none;
     transition: visibility 0s 0.2s, opacity 0.2s linear;
 }
 

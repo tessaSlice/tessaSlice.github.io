@@ -1,6 +1,9 @@
 ---
 import Header from "../components/Header.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+
+// src/data/books.csv is saved for later and is not read yet.
+const books = [];
 ---
 
 <html lang="en">
@@ -14,19 +17,662 @@ import ProjectCard from "../components/ProjectCard.astro";
     <body>
         <Header />
         <div>
-            <h1 style="text-align: center;"><b>Hi, I'm Amy Lee!</b></h1>
+            <h1><b>Amy Lee</b></h1>
             <p>
-                I'm a student studying Computer Science at the
-                University of Michigan. I'm interested in pursuing problems
-                relating to applications of AI to real world projects and was an
-                intern at Nexteer this past summer where I worked on embedded
-                software. You can find my other project experiences in my
-                resume.
+                Hi, I'm Amy, a CS Master's student at the University of
+                Michigan. I recently graduated with a Bachelor's degree in CS
+                at the University of Michigan. I'm interested in
+                <span class="interest-rotator">
+                    <span class="interest-static"
+                        >operating, distributed, and embedded</span
+                    >
+                    <span class="interest-cycle" aria-hidden="true">
+                        <span class="interest-sizer">operating</span>
+                        <span class="interest-word is-shown">operating</span>
+                    </span>
+                </span>
+                systems. I've previously interned at
+                AWS (x2) as a software engineering intern and Nexteer as an
+                embedded systems intern.
+            </p>
+            <!-- Hidden for now. Delete the .bio-aside, .books-section rule in the style block to show this paragraph and the book box again. -->
+            <p class="bio-aside">
+                Besides my work, I aspire to be a tea master and in my spare
+                time enjoy reading. In fact, I've probably got a book
+                recommendation in my curated collection if you're up for it.
             </p>
         </div>
+
+        <section class="books-section" aria-labelledby="book-system-title">
+            <div class="book-system">
+            <h2 id="book-system-title">Book Recommendation System</h2>
+            <div class="books-actions">
+                <div class="reco-wip">
+                    <button
+                        type="button"
+                        class="google-btn"
+                        disabled
+                        aria-disabled="true"
+                    >
+                        <span class="reco-label"
+                            >Personalize My Recommendation</span
+                        >
+                        <span class="wip-banner">WORK IN PROGRESS</span>
+                    </button>
+                </div>
+                <button type="button" class="google-btn feeling-lucky" id="feeling-lucky">
+                    <span class="lucky-sheen" aria-hidden="true"></span>
+                    <span class="lucky-label">I'm Feeling Lucky</span>
+                    <span class="lucky-sparkles" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+            </div>
+            <p class="book-lucky-status" id="book-lucky-status" aria-live="polite"></p>
+            <div id="lucky-book" class="lucky-book" hidden></div>
+            </div>
+        </section>
+
         <h1 id="projects">Projects</h1>
         <div class="project-cards-container">
             <ProjectCard />
         </div>
+        <script>
+            const cycle = document.querySelector(".interest-cycle");
+            const sizer = document.querySelector(".interest-sizer");
+            const words = ["operating", "distributed", "embedded"];
+            const reduceMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            ).matches;
+
+            if (cycle && sizer && !reduceMotion) {
+                let index = 0;
+
+                function fit(text) {
+                    sizer.textContent = text;
+                    const probe = document.createElement("span");
+                    probe.textContent = text;
+                    probe.style.cssText =
+                        "position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none;";
+                    cycle.parentElement.append(probe);
+                    const width = Math.ceil(probe.getBoundingClientRect().width);
+                    probe.remove();
+                    cycle.style.width = `${width}px`;
+                }
+
+                function swap() {
+                    index = (index + 1) % words.length;
+                    const outgoing = cycle.querySelector(".interest-word.is-shown");
+                    const incoming = outgoing.cloneNode(false);
+                    incoming.classList.remove("is-shown");
+                    incoming.textContent = words[index];
+                    cycle.append(incoming);
+                    fit(words[index]);
+                    void incoming.offsetWidth;
+                    incoming.classList.add("is-shown");
+                    outgoing.classList.remove("is-shown");
+                    window.setTimeout(() => outgoing.remove(), 500);
+                }
+
+                fit(words[0]);
+                document.fonts?.ready.then(() => fit(words[index]));
+                window.setInterval(swap, 2000);
+            }
+
+            function placeWipBanner() {
+                const button = document.querySelector(".reco-wip .google-btn");
+                const banner = document.querySelector(".wip-banner");
+                if (!button || !banner) return;
+                const { width, height } = button.getBoundingClientRect();
+                if (!width || !height) return;
+                const angle = Math.atan2(height, width) * (180 / Math.PI);
+                banner.style.width = "max-content";
+                banner.style.fontSize = "";
+                const room = Math.hypot(width, height) - 12;
+                if (banner.scrollWidth > room) {
+                    const fitted = (13 * room) / banner.scrollWidth;
+                    banner.style.fontSize = `${Math.max(10, fitted)}px`;
+                }
+                banner.style.width = `${Math.hypot(width, height) + 4}px`;
+                banner.style.transform = `translate(-50%, -50%) rotate(${-angle}deg)`;
+            }
+
+            placeWipBanner();
+            window.addEventListener("resize", placeWipBanner);
+            document.fonts?.ready.then(placeWipBanner);
+
+        </script>
+        <script define:vars={{ books }}>
+            const lucky = document.getElementById("feeling-lucky");
+            const mount = document.getElementById("lucky-book");
+            const luckyStatus = document.getElementById("book-lucky-status");
+            const reduceMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            ).matches;
+            let lastIndex = -1;
+
+            function showBook(book) {
+                mount.replaceChildren();
+                if (book.img) {
+                    const img = document.createElement("img");
+                    img.className = "lucky-cover";
+                    img.alt = "";
+                    img.src = book.img;
+                    img.addEventListener("error", () => img.remove());
+                    mount.append(img);
+                }
+                const title = document.createElement("h2");
+                title.className = "lucky-title";
+                title.textContent = book.title;
+                mount.append(title);
+                if (book.author) {
+                    const author = document.createElement("p");
+                    author.className = "lucky-author";
+                    author.textContent = book.author;
+                    mount.append(author);
+                }
+                if (book.caption) {
+                    const caption = document.createElement("p");
+                    caption.className = "lucky-caption";
+                    caption.textContent = book.caption;
+                    mount.append(caption);
+                }
+                mount.hidden = false;
+                luckyStatus.textContent = book.author
+                    ? `${book.title} by ${book.author}`
+                    : book.title;
+                luckyStatus.classList.add("is-sr");
+                if (!reduceMotion) {
+                    mount.classList.remove("is-shown");
+                    void mount.offsetWidth;
+                    mount.classList.add("is-shown");
+                }
+            }
+
+            lucky?.addEventListener("click", () => {
+                if (!books.length) {
+                    mount.hidden = true;
+                    mount.replaceChildren();
+                    luckyStatus.classList.remove("is-sr");
+                    luckyStatus.textContent =
+                        "No recommendations to draw from yet.";
+                    return;
+                }
+                let index = Math.floor(Math.random() * books.length);
+                if (books.length > 1 && index === lastIndex) {
+                    index = (index + 1) % books.length;
+                }
+                lastIndex = index;
+                showBook(books[index]);
+                mount.scrollIntoView({
+                    behavior: reduceMotion ? "auto" : "smooth",
+                    block: "nearest",
+                });
+            });
+        </script>
     </body>
 </html>
+
+<style>
+    .interest-rotator {
+        position: relative;
+        color: var(--accent);
+        font-weight: 600;
+    }
+
+    .interest-static {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .interest-cycle {
+        display: inline-grid;
+        vertical-align: baseline;
+        overflow: hidden;
+        transition: width 0.45s ease;
+    }
+
+    .interest-sizer,
+    .interest-word {
+        grid-area: 1 / 1;
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    .interest-sizer {
+        visibility: hidden;
+    }
+
+    .interest-word {
+        opacity: 0;
+        transition: opacity 0.45s ease;
+    }
+
+    .interest-word.is-shown {
+        opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .interest-static {
+            position: static;
+            width: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+
+        .interest-cycle {
+            display: none;
+        }
+
+        .interest-word,
+        .interest-cycle {
+            transition: none;
+        }
+    }
+
+    .books-section {
+        margin: 0.5rem 0 2rem;
+    }
+
+    /* Reading line and book box are hidden for now. Delete this rule to bring both back. */
+    .bio-aside,
+    .books-section {
+        display: none;
+    }
+
+    .book-system {
+        width: min(40rem, 100%);
+        margin: 0 auto;
+        padding: 1.35rem 1.75rem 1.5rem;
+        border: 2px solid var(--card-border);
+        border-radius: 12px;
+        background: var(--card-surface);
+        box-sizing: border-box;
+    }
+
+    .book-system h2 {
+        margin: 0 0 1.1rem;
+        text-align: center;
+        font-size: 1.45rem;
+        font-weight: 600;
+    }
+
+    .books-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .google-btn {
+        appearance: none;
+        background-color: #fbf8f3;
+        border: 1px solid #e4d9c8;
+        border-radius: 4px;
+        color: #4a433c;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 27px;
+        height: 36px;
+        padding: 0 16px;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .google-btn:hover:not(.feeling-lucky),
+    .google-btn:focus-visible:not(.feeling-lucky) {
+        background-color: #fbf8f3;
+        border-color: #cfc1ad;
+        box-shadow: 0 1px 1px rgba(70, 48, 24, 0.1);
+        color: #2c261f;
+        outline: none;
+    }
+
+    .google-btn:focus-visible {
+        border-color: #a3472f;
+    }
+
+    .reco-wip {
+        position: relative;
+        z-index: 0;
+        display: inline-flex;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 4px;
+        pointer-events: none;
+    }
+
+    .reco-wip {
+        width: max-content;
+        height: 3.25rem;
+    }
+
+    .books-actions > .feeling-lucky {
+        width: 100%;
+        height: 3.25rem;
+    }
+
+    .reco-wip .google-btn,
+    .books-actions > .feeling-lucky {
+        height: 3.25rem;
+        padding: 0 22px;
+        box-sizing: border-box;
+    }
+
+    .reco-wip .google-btn {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.3;
+        cursor: default;
+        opacity: 1;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+
+    .books-actions > .feeling-lucky {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.3;
+    }
+
+    .reco-wip .google-btn:disabled {
+        background-color: #fbf8f3;
+        border-color: #e4d9c8;
+        color: #4a433c;
+        opacity: 1;
+    }
+
+    .reco-label {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wip-banner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        transform: translate(-50%, -50%);
+        background-color: #ffe14a;
+        color: #202124;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        line-height: 1.15;
+        padding: 5px 0;
+        text-align: center;
+        white-space: nowrap;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .feeling-lucky {
+        position: relative;
+        z-index: 1;
+        overflow: visible;
+        transition:
+            background-color 0.15s ease,
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            transform 0.15s ease;
+    }
+
+    .lucky-label {
+        position: relative;
+        z-index: 2;
+    }
+
+    .lucky-sheen {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        border-radius: inherit;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    .lucky-sheen::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        bottom: -50%;
+        left: -60%;
+        width: 50%;
+        background: linear-gradient(
+            100deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0) 20%,
+            rgba(255, 255, 255, 0.95) 48%,
+            rgba(255, 236, 150, 0.55) 62%,
+            transparent 100%
+        );
+        opacity: 0;
+    }
+
+    .lucky-sparkles {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        pointer-events: none;
+    }
+
+    .lucky-sparkles span {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        opacity: 0;
+        background: #fffef8;
+        clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+        );
+        filter: drop-shadow(0 0 3px #ffe14a);
+    }
+
+    .lucky-sparkles span:nth-child(odd) {
+        background: #ffe14a;
+    }
+
+    .lucky-sparkles span:nth-child(1) { top: -11px; left: 10%; }
+    .lucky-sparkles span:nth-child(2) { top: -12px; right: 16%; }
+    .lucky-sparkles span:nth-child(3) { bottom: -11px; left: 22%; }
+    .lucky-sparkles span:nth-child(4) { bottom: -10px; right: 18%; }
+    .lucky-sparkles span:nth-child(5) { top: 18%; left: -12px; }
+    .lucky-sparkles span:nth-child(6) { top: 8%; right: -12px; }
+
+    .google-btn.feeling-lucky:hover,
+    .google-btn.feeling-lucky:focus-visible {
+        background-color: #fff6c8;
+        background-image: linear-gradient(180deg, #fffef3 0%, #ffe56a 46%, #fff1a8 100%);
+        border-color: #e2b21a;
+        color: #202124;
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow:
+            0 0 0 2px rgba(255, 205, 60, 1),
+            0 0 18px rgba(255, 190, 40, 0.95),
+            0 8px 22px rgba(160, 110, 30, 0.28);
+    }
+
+    .feeling-lucky:hover .lucky-sheen::after,
+    .feeling-lucky:focus-visible .lucky-sheen::after {
+        opacity: 1;
+        animation: lucky-sheen 0.9s ease-in-out infinite;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span,
+    .feeling-lucky:focus-visible .lucky-sparkles span {
+        animation: lucky-twinkle 0.95s ease-in-out infinite;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span:nth-child(2),
+    .feeling-lucky:focus-visible .lucky-sparkles span:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span:nth-child(3),
+    .feeling-lucky:focus-visible .lucky-sparkles span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span:nth-child(4),
+    .feeling-lucky:focus-visible .lucky-sparkles span:nth-child(4) {
+        animation-delay: 0.22s;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span:nth-child(5),
+    .feeling-lucky:focus-visible .lucky-sparkles span:nth-child(5) {
+        animation-delay: 0.55s;
+    }
+
+    .feeling-lucky:hover .lucky-sparkles span:nth-child(6),
+    .feeling-lucky:focus-visible .lucky-sparkles span:nth-child(6) {
+        animation-delay: 0.32s;
+    }
+
+    @keyframes lucky-sheen {
+        from { transform: translateX(0); }
+        to { transform: translateX(420%); }
+    }
+
+    @keyframes lucky-twinkle {
+        0%, 100% { opacity: 0.45; transform: scale(0.75) rotate(0deg); }
+        50% { opacity: 1; transform: scale(1.25) rotate(18deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .feeling-lucky,
+        .google-btn.feeling-lucky:hover,
+        .google-btn.feeling-lucky:focus-visible {
+            transition: none;
+            transform: none;
+        }
+
+        .feeling-lucky:hover .lucky-sheen::after,
+        .feeling-lucky:focus-visible .lucky-sheen::after,
+        .feeling-lucky:hover .lucky-sparkles span,
+        .feeling-lucky:focus-visible .lucky-sparkles span {
+            animation: none;
+        }
+
+        .feeling-lucky:hover .lucky-sheen::after,
+        .feeling-lucky:focus-visible .lucky-sheen::after {
+            opacity: 0.85;
+            transform: translateX(180%);
+        }
+
+        .feeling-lucky:hover .lucky-sparkles span,
+        .feeling-lucky:focus-visible .lucky-sparkles span {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .book-lucky-status {
+        text-align: center;
+        margin: 0 0 1rem;
+    }
+
+    .book-lucky-status:empty,
+    .book-lucky-status.is-sr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .lucky-book {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 28rem;
+        margin: 0.25rem auto 1.5rem;
+        gap: 0.35rem;
+    }
+
+    .lucky-book.is-shown {
+        animation: lucky-reveal 0.4s ease;
+    }
+
+    .lucky-cover {
+        width: min(220px, 70vw);
+        height: auto;
+        max-height: 320px;
+        object-fit: contain;
+        margin-bottom: 0.5rem;
+    }
+
+    .lucky-title {
+        margin: 0;
+        font-size: 1.35rem;
+        font-weight: 700;
+    }
+
+    .lucky-author,
+    .lucky-caption {
+        margin: 0;
+    }
+
+    .lucky-caption {
+        margin-top: 0.35rem;
+    }
+
+    @keyframes lucky-reveal {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .lucky-book.is-shown {
+            animation: none;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .books-actions,
+        .reco-wip,
+        .reco-wip .google-btn,
+        .books-actions > .feeling-lucky {
+            width: 100%;
+            min-width: 0;
+            max-width: 100%;
+        }
+    }
+</style>

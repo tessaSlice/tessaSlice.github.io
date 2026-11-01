@@ -49,8 +49,8 @@ const { Content } = await project.render();
     .header-container .learn-more {
         margin: 0;
         padding: 10px 15px;
-        background-color: #007acc;
-        color: #fff;
+        background-color: var(--accent);
+        color: var(--accent-ink);
         text-align: center;
         text-decoration: none;
         border-radius: 5px;
@@ -59,7 +59,8 @@ const { Content } = await project.render();
     }
 
     .header-container .learn-more:hover {
-        background-color: #005fa3;
+        background-color: var(--accent-hover);
+        color: var(--accent-ink);
     }
 
     @media (max-width: 600px) {

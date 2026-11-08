@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Terminal chip demo</title>
+    <style>
+        :root {
+            --bg: #241f1b;
+            --text: #f3ece3;
+            --prompt: #f0b090;
+            --muted: #cbbba6;
+            --chip: #312b26;
+            --chip-border: #f0b090;
+            --page: #1a1714;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--page);
+            color: var(--text);
+            font-family: "Iowan Old Style", Palatino, Georgia, serif;
+        }
+
+        .note {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 1.25rem 1.25rem 0.25rem;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        .note strong { font-weight: 600; }
+
+        .stage {
+            max-width: 26rem;
+            margin: 0.75rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .term {
+            display: flex;
+            flex-direction: column;
+            height: min(40rem, calc(100vh - 8rem));
+            min-height: 28rem;
+            background: var(--bg);
+            border: 1px solid #5c5148;
+            border-radius: 12px;
+            overflow: hidden;
+            font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        .log {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            padding: 1rem 0.9rem 0.4rem;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .log-spacer { flex: 1 1 auto; }
+
+        .entry { margin: 0 0 0.85rem; }
+        .prompt { color: var(--prompt); }
+        .out { margin: 0 0 0.85rem; }
+
+        .dock {
+            padding: 0.35rem 0.75rem 0.8rem;
+            background: #1e1a17;
+            border-top: 1px solid #3d342c;
+        }
+
+        .caption {
+            margin: 0 0 0.45rem;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.01em;
+        }
+
+        .caption.is-gone { display: none; }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            padding-bottom: 0.55rem;
+        }
+
+        .chips::-webkit-scrollbar { display: none; }
+
+        .chips.is-empty { display: none; }
+
+        .chip {
+            flex: none;
+            appearance: none;
+            margin: 0;
+            min-height: 2.75rem;
+            padding: 0.35rem 0.85rem;
+            border: 1px solid var(--chip-border);
+            border-radius: 8px;
+            background: var(--chip);
+            color: var(--text);
+            font: inherit;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        .chip:hover,
+        .chip:focus-visible {
+            background: #4a4038;
+            outline: none;
+        }
+
+        .chip:active {
+            background: var(--prompt);
+            color: #2c261f;
+        }
+
+        .chip.secondary {
+            border-color: #8a7568;
+            color: var(--muted);
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .line .prompt { flex: none; }
+
+        .typed {
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .enter {
+            flex: none;
+            appearance: none;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: 1px solid var(--chip-border);
+            border-radius: 8px;
+            background: var(--chip);
+            color: var(--prompt);
+            cursor: pointer;
+        }
+
+        .enter:active { background: var(--prompt); color: #2c261f; }
+
+        .enter:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <p class="note">
+        <strong>Chip demo only.</strong>
+        This is not the portfolio. There is no keyboard.
+        Select a command, then the enter key runs the line.
+        The newest line stays at the bottom. <em>cat</em> takes a path, and a directory is an error.
+    </p>
+    <div class="stage">
+        <div class="term">
+            <div class="log" id="log"><div class="log-spacer"></div></div>
+            <form class="dock" id="dock">
+                <p class="caption" id="caption">Select a command. The enter key runs the line.</p>
+                <div class="chips" id="chips"></div>
+                <div class="line">
+                    <span class="prompt" id="prompt">amy@lee:~$</span>
+                    <span class="typed" id="typed"></span>
+                    <button type="submit" class="enter" id="enter" aria-label="Enter" disabled>
+                        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+                            <path d="M14 3v6H5.8l2.1-2.1L6.5 5.5 2 10l4.5 4.5 1.4-1.4L5.8 11H16V3z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const log = document.getElementById("log");
+        const chips = document.getElementById("chips");
+        const typed = document.getElementById("typed");
+        const enter = document.getElementById("enter");
+        const promptEl = document.getElementById("prompt");
+        const caption = document.getElementById("caption");
+        const form = document.getElementById("dock");
+
+        const file = (text) => ({ kind: "file", text });
+        const tree = {
+            projects: {
+                kind: "dir",
+                children: {
+                    "gene-regression-analysis": file("Gene Regression Analysis\nMy first foray into research.\nCreated and analyzed multiple ML models that could potentially reduce RNA sequencing costs by 20%.\nPython, Jupyter Notebook, pandas, numpy, matplotlib, scikit-learn"),
+                    "scoliosis-bot": file("Scoliosis Bot\nA fun reminder.\nA Discord bot that would remind users intermittently throughout the day of their posture."),
+                    tetris: file("Tetris\nA classic.\nTetris built from scratch using standard Java libraries.\nhttps://github.com/tessaSlice/Tetris"),
+                    trektician: file("Trektician\nMHacks x Google.\nWebsite built with React, Vite, and Flask."),
+                    "wireless-walker": file("Wireless Walker\nA walking cane that detects objects and alerts the user."),
+                },
+            },
+            work: {
+                kind: "dir",
+                children: {
+                    aws: file("AWS\nSoftware engineering intern, two times."),
+                    nexteer: file("Nexteer\nEmbedded systems intern."),
+                },
+            },
+        };
+        const root = { kind: "dir", children: tree };
+
+        const commands = ["ls", "cd", "cat", "help", "whoami", "clear", "pwd", "exit"];
+        const secondary = new Set(["help", "whoami", "clear", "pwd", "exit"]);
+        const noArg = new Set(["whoami", "help", "pwd", "clear", "exit"]);
+        let cwd = "~";
+        let taught = false;
+
+        function promptText() {
+            return cwd === "~" ? "amy@lee:~$" : `amy@lee:${cwd.replace("~", "~")}$`;
+        }
+
+        function printCommand(line) {
+            const row = document.createElement("div");
+            row.className = "entry";
+            const marker = document.createElement("span");
+            marker.className = "prompt";
+            marker.textContent = promptText() + " ";
+            row.append(marker, document.createTextNode(line));
+            log.append(row);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function printOutput(text) {
+            const row = document.createElement("div");
+            row.className = "out";
+            row.textContent = text;
+            log.append(row);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function cwdParts() {
+            return cwd === "~" ? [] : cwd.slice(2).split("/");
+        }
+
+        function nodeAt(parts) {
+            let node = root;
+            for (const seg of parts) {
+                if (!node || node.kind !== "dir" || !node.children[seg]) return null;
+                node = node.children[seg];
+            }
+            return node;
+        }
+
+        function resolve(path) {
+            const parts = cwdParts();
+            for (const seg of path ? path.split("/") : []) {
+                if (seg === "" || seg === ".") continue;
+                if (seg === "..") parts.pop();
+                else parts.push(seg);
+            }
+            return { parts, node: nodeAt(parts) };
+        }
+
+        function here() {
+            return nodeAt(cwdParts());
+        }
+
+        function childLabels(dir, prefix) {
+            if (!dir || dir.kind !== "dir") return [];
+            return Object.entries(dir.children)
+                .filter(([name]) => name.startsWith(prefix) && name !== prefix)
+                .map(([name, node]) => (node.kind === "dir" ? name + "/" : name));
+        }
+
+        function catChips(path) {
+            if (!path) return childLabels(here(), "");
+            const bits = path.split("/");
+            const closed = path.endsWith("/");
+            const partial = closed ? "" : bits.pop();
+            const parent = resolve(bits.join("/")).node;
+            if (!parent || parent.kind !== "dir") return [];
+            if (!closed && partial && parent.children[partial]) {
+                const exact = parent.children[partial];
+                if (exact.kind === "file") return [];
+                return childLabels(exact, "");
+            }
+            return childLabels(parent, partial || "");
+        }
+
+        function dirChips(prefix, command) {
+            const names = cwd === "~" ? ["projects", "work"] : command === "cd" ? [".."] : [];
+            return names.filter((name) => name.startsWith(prefix) && name !== prefix);
+        }
+
+        function suggestions() {
+            const value = typed.textContent;
+            const parts = value.trim().split(/\s+/).filter(Boolean);
+            if (parts.length === 0) return commands.slice();
+            if (parts.length > 1 && parts[0].toLowerCase() !== "cat" && value.trim().includes(" ")) {
+                const command = parts[0].toLowerCase();
+                const arg = parts.slice(1).join(" ");
+                if ((command === "ls" || command === "cd") && parts.length === 2) {
+                    return dirChips(arg.toLowerCase(), command);
+                }
+                return [];
+            }
+            const command = parts[0].toLowerCase();
+            if (parts.length === 1) {
+                if (command === "ls" || command === "cd") return dirChips("", command);
+                if (command === "cat") return catChips("");
+                if (noArg.has(command)) return [];
+                return commands.filter((name) => name.startsWith(command) && name !== command);
+            }
+            if (command === "cat") return catChips(parts.slice(1).join(" "));
+            return [];
+        }
+
+        function setLine(value) {
+            typed.textContent = value;
+            enter.disabled = value.trim() === "";
+            renderChips();
+        }
+
+        function renderChips() {
+            const names = suggestions();
+            chips.replaceChildren();
+            chips.classList.toggle("is-empty", names.length === 0);
+            caption.classList.toggle("is-gone", taught || names.length === 0);
+            if (names.length === 0) return;
+            for (const name of names) {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = secondary.has(name) ? "chip secondary" : "chip";
+                button.textContent = name;
+                button.addEventListener("click", () => accept(name));
+                chips.append(button);
+            }
+        }
+
+        function accept(label) {
+            const name = label.replace(/\/$/, "");
+            const value = typed.textContent;
+            const parts = value.trim().split(/\s+/).filter(Boolean);
+            if (commands.includes(name) && parts.length <= 1) {
+                setLine(name);
+            } else if ((parts[0] || "").toLowerCase() === "cat") {
+                const path = parts.slice(1).join(" ");
+                if (!path) setLine("cat " + name);
+                else {
+                    const bits = path.split("/");
+                    const last = bits[bits.length - 1];
+                    const parent = resolve(bits.slice(0, -1).join("/")).node;
+                    const exact = parent && parent.kind === "dir" && parent.children[last];
+                    if (exact && exact.kind === "dir") setLine("cat " + path + "/" + name);
+                    else {
+                        bits[bits.length - 1] = name;
+                        setLine("cat " + bits.filter(Boolean).join("/"));
+                    }
+                }
+            } else {
+                setLine((parts[0] || "") + " " + name);
+            }
+            if (!taught) {
+                taught = true;
+                caption.classList.add("is-gone");
+            }
+        }
+
+        function run(raw) {
+            const line = raw.trim();
+            printCommand(line);
+            setLine("");
+            if (!line) return;
+            if (/[|&;<>`$\\]/.test(line)) {
+                printOutput("This shell runs one command at a time.");
+                return;
+            }
+            const parts = line.split(/\s+/);
+            const name = parts[0].toLowerCase();
+            const arg = parts.slice(1).join(" ");
+
+            if (name === "whoami") {
+                printOutput("Amy Lee\nCS master's student at the University of Michigan.\nSoftware engineering intern at AWS, twice.\nEmbedded systems intern at Nexteer.");
+            } else if (name === "help") {
+                printOutput("The available commands are:\nls  cd  cat  help  whoami  clear  pwd  exit\n\nwhoami  print the introduction\npwd     print the current directory\nclear   wipe the screen\nexit    return to light mode\n\nExamples of how to use these commands:\nls projects     list that directory\ncd projects     enter the directory\ncat work/aws    read a file from anywhere\ncat projects    returns an error since projects is a directory");
+            } else if (name === "pwd") {
+                printOutput(cwd);
+            } else if (name === "clear") {
+                const spacer = log.querySelector(".log-spacer");
+                log.replaceChildren(spacer || document.createElement("div"));
+                if (!spacer) log.firstChild.className = "log-spacer";
+            } else if (name === "ls") {
+                if (!arg) {
+                    printOutput(Object.keys(here().children).join("\n") || "(empty)");
+                } else {
+                    const found = resolve(arg);
+                    if (!found.node) printOutput("ls: cannot access '" + arg + "': No such file or directory");
+                    else if (found.node.kind === "file") printOutput(arg + " is a file. cat " + arg);
+                    else printOutput(Object.keys(found.node.children).join("\n"));
+                }
+            } else if (name === "cd") {
+                if (!arg) printOutput("cd needs a directory.");
+                else {
+                    const found = resolve(arg);
+                    if (!found.node) printOutput("cd: not a directory: " + arg);
+                    else if (found.node.kind === "file") printOutput(arg + " is a file. cat " + arg);
+                    else cwd = found.parts.length ? "~/" + found.parts.join("/") : "~";
+                }
+            } else if (name === "cat") {
+                if (!arg) printOutput("cat needs a path.");
+                else {
+                    const found = resolve(arg);
+                    if (!found.node) printOutput("No file named " + arg + ".");
+                    else if (found.node.kind === "dir") printOutput("cat: " + arg + ": is a directory");
+                    else printOutput(found.node.text);
+                }
+            } else if (name === "exit") {
+                printOutput("This would return to the light recruiter page.");
+            } else {
+                printOutput("command not found: " + parts[0]);
+            }
+            promptEl.textContent = promptText();
+            renderChips();
+        }
+
+        run("help");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            run(typed.textContent);
+        });
+        renderChips();
+    </script>
+</body>
+</html>

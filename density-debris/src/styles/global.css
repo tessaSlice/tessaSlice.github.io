@@ -68,9 +68,9 @@
 
 /* Dark page gets a cream bar. */
 [data-theme="dark"] {
-    --nav-background-color: #f3ece3;
-    --nav-text-color: #2c261f;
-    --nav-hover-background-color: #e6d9c8;
+    --nav-background-color: #241f1b;
+    --nav-text-color: #f3ece3;
+    --nav-hover-background-color: #3a332c;
 
     --card-surface: #312b26;
     --card-border: #cfc1ad;
@@ -92,6 +92,7 @@ html {
     min-height: 100%;
     background-color: var(--background-color, var(--default-background-color));
     font-family: "Comfortaa", "Trebuchet MS", "Segoe UI", sans-serif;
+    scrollbar-gutter: stable;
 }
 
 /* Body Styles */
@@ -193,7 +194,13 @@ button#theme-toggle {
 .nav-right {
     flex: 2;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
+}
+
+.theme-slot {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {
@@ -325,7 +332,7 @@ header {
     }
 
     .nav-right {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
     }
 
@@ -338,6 +345,39 @@ header {
         padding: 1rem;
         text-align: center;
     }
+
+    .theme-slot {
+        position: relative;
+        z-index: 5;
+    }
+
+    .theme-slot button#theme-toggle {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+[data-theme="dark"] .hamburger-menu,
+[data-theme="dark"] .nav-left,
+[data-theme="dark"] .nav-links,
+[data-theme="dark"] .nav-links .nav-icon,
+[data-theme="dark"] .nav-left .nav-icon,
+[data-theme="dark"] .nav-links .nav-text {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .nav-links.expanded {
+    display: none;
+}
+
+[data-theme="dark"] body {
+    overflow: hidden;
+}
+
+[data-theme="dark"] body > *:not(header):not(.terminal-app) {
+    display: none;
 }
 
 .nav-item {

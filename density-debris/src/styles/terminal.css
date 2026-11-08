@@ -1,6 +1,12 @@
-/* Terminal mode */
+/* Terminal mode. Page colors come from the dark theme tokens in global.css. */
 .terminal-app {
     display: none;
+    --term-dock: #1e1a17;
+    --term-dock-line: #3d342c;
+    --term-muted: #cbbba6;
+    --term-faint: #8a7568;
+    --term-well: #2a2520;
+    --term-well-line: #5c5148;
 }
 
 [data-theme="dark"] .terminal-app {
@@ -8,12 +14,9 @@
     flex-direction: column;
     position: fixed;
     z-index: 4;
-    top: var(--term-top, 5.5rem);
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #241f1b;
-    color: #f3ece3;
+    inset: var(--term-top, 5.5rem) 0 0;
+    background: var(--dark-background-color);
+    color: var(--dark-text-color);
     font-family: ui-monospace, "SFMono-Regular", "Cascadia Code", Menlo, Consolas, monospace;
     font-size: 0.95rem;
     line-height: 1.45;
@@ -30,20 +33,18 @@
 }
 
 .log-spacer { flex: 1 1 auto; }
-.term-entry { margin: 0 0 0.85rem; }
+.term-entry,
 .term-out { margin: 0 0 0.85rem; }
-
-.term-out a {
-    color: #f0b090;
-}
-
-.term-prompt { color: #f0b090; }
+.term-out a,
+.term-prompt,
+.term-enter,
+.term-option.is-on { color: var(--accent); }
 
 .phone-dock,
 .desktop-dock {
     padding: 0.45rem 0.85rem 0.85rem;
-    background: #1e1a17;
-    border-top: 1px solid #3d342c;
+    background: var(--term-dock);
+    border-top: 1px solid var(--term-dock-line);
 }
 
 .desktop-dock { display: none; }
@@ -51,11 +52,12 @@
 .term-caption {
     margin: 0 0 0.4rem;
     min-height: 1.1rem;
-    color: #cbbba6;
+    color: var(--term-muted);
     font-size: 0.78rem;
 }
 
-.term-caption.is-gone { visibility: hidden; }
+.term-caption.is-gone,
+.term-suggest.is-empty { visibility: hidden; }
 
 .term-chips {
     display: flex;
@@ -65,22 +67,30 @@
     margin-bottom: 0.45rem;
 }
 
-.term-chip {
+.term-chip,
+.term-enter {
     flex: none;
-    appearance: none;
-    min-height: 2.75rem;
-    padding: 0.35rem 0.85rem;
-    border: 1px solid #f0b090;
+    border: 1px solid var(--accent);
     border-radius: 8px;
-    background: #312b26;
-    color: #f3ece3;
-    font: inherit;
+    background: var(--card-surface);
     cursor: pointer;
 }
 
+.term-chip,
+.term-option {
+    appearance: none;
+    color: var(--dark-text-color);
+    font: inherit;
+}
+
+.term-chip {
+    min-height: 2.75rem;
+    padding: 0.35rem 0.85rem;
+}
+
 .term-chip.secondary {
-    border-color: #8a7568;
-    color: #cbbba6;
+    border-color: var(--term-faint);
+    color: var(--term-muted);
 }
 
 .term-row {
@@ -91,56 +101,41 @@
 
 .term-typed { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 
-.term-enter {
-    flex: none;
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 1px solid #f0b090;
-    border-radius: 8px;
-    background: #312b26;
-    color: #f0b090;
-    cursor: pointer;
-}
-
+.term-enter { width: 2.75rem; height: 2.75rem; }
 .term-enter:disabled { opacity: 0.35; }
 
 .term-suggest {
     display: flex;
     min-height: 2.25rem;
     margin-bottom: 0.45rem;
-    border: 1px solid #5c5148;
+    border: 1px solid var(--term-well-line);
     border-radius: 8px;
-    background: #2a2520;
+    background: var(--term-well);
     overflow: hidden;
 }
 
 .term-suggest.is-empty {
-    visibility: hidden;
     border-color: transparent;
     background: transparent;
 }
 
 .term-option {
     flex: 1;
-    appearance: none;
     border: 0;
-    border-left: 1px solid #5c5148;
+    border-left: 1px solid var(--term-well-line);
     background: transparent;
-    color: #f3ece3;
-    font: inherit;
     padding: 0.4rem 0.5rem;
     cursor: pointer;
 }
 
 .term-option:first-child { border-left: 0; }
-.term-option.is-on { background: #3a332c; color: #f0b090; }
+.term-option.is-on { background: var(--nav-hover-background-color); }
 
 .term-field { position: relative; flex: 1; min-width: 0; }
 
 .term-ghost,
 .term-field input {
     font: inherit;
-    line-height: 1.45;
     padding: 0.3rem 0;
     border: 0;
     white-space: pre;
@@ -154,14 +149,14 @@
     overflow: hidden;
 }
 
-.term-rest { color: #8a7568; }
+.term-rest { color: var(--term-faint); }
 
 .term-field input {
     position: relative;
     width: 100%;
     background: transparent;
-    color: #f3ece3;
-    caret-color: #f0b090;
+    color: var(--dark-text-color);
+    caret-color: var(--accent);
 }
 
 .term-field input:focus { outline: none; }

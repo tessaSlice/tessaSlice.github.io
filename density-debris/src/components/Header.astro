@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { Icon } from "astro-icon/components";
+import TerminalShell from "./TerminalShell.astro";
 ---
 
 <header>
@@ -53,7 +54,8 @@ import { Icon } from "astro-icon/components";
                             <span class="nav-text">GitHub<br />(external)</span>
                         </span>
                     </a>
-
+                </div>
+                <div class="theme-slot">
                     <button id="theme-toggle" aria-label="Toggle color theme">
                         <span id="theme-icon-light">
                             <Icon name="light-mode" class="nav-icon" is:inline />
@@ -67,6 +69,7 @@ import { Icon } from "astro-icon/components";
         </div>
     </nav>
 </header>
+<TerminalShell />
 
 <script>
     function toggleTheme() {
@@ -75,6 +78,7 @@ import { Icon } from "astro-icon/components";
         const newTheme = currentTheme === "light" ? "dark" : "light";
         document.documentElement.setAttribute("data-theme", newTheme);
         localStorage.setItem("theme", newTheme);
+        document.querySelector(".nav-links").classList.remove("expanded");
         updateStyles(newTheme);
         updateIcon(newTheme);
     }
@@ -135,20 +139,9 @@ import { Icon } from "astro-icon/components";
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-        const prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-        ).matches;
         const savedTheme = localStorage.getItem("theme");
 
-        let theme = "light";
-        // first check if they prefer dark mode
-        if (prefersDark) {
-            theme = "dark";
-        }
-        // then check if they have a saved theme (this has higher priority)
-        if (savedTheme) {
-            theme = savedTheme;
-        }
+        const theme = savedTheme === "dark" ? "dark" : "light";
 
         updateStyles(theme);
         updateIcon(theme);

@@ -1,0 +1,56 @@
+---
+import "../styles/terminal.css";
+import { getCollection } from "astro:content";
+
+function listed(items, withBody) {
+    return items
+        .filter((item) => item.data.visible)
+        .map((item) => {
+            const entry = {
+                slug: item.slug,
+                name: item.data.name,
+                caption: item.data.caption,
+                description: item.data.description,
+                tags: item.data.tags ?? [],
+                github: item.data.github_link ?? "",
+            };
+            if (withBody) entry.body = item.body.trim();
+            return entry;
+        });
+}
+
+const catalog = {
+    projects: listed(await getCollection("projects"), false),
+    work: listed(await getCollection("work"), true),
+};
+---
+
+<script id="terminal-catalog" type="application/json" set:html={JSON.stringify(catalog)}></script>
+<div class="terminal-app" aria-label="Terminal mode">
+    <div class="term-log" id="term-log"><div class="log-spacer"></div></div>
+    <form class="phone-dock" id="term-phone">
+        <p class="term-caption" id="term-phone-caption">Select a command. The enter key runs the line.</p>
+        <div class="term-chips" id="term-chips"></div>
+        <div class="term-row">
+            <span class="term-prompt" data-prompt>amy@lee:~$</span>
+            <span class="term-typed" id="term-typed"></span>
+            <button type="submit" class="term-enter" id="term-enter" aria-label="Enter" disabled>
+                <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+                    <path d="M14 3v6H5.8l2.1-2.1L6.5 5.5 2 10l4.5 4.5 1.4-1.4L5.8 11H16V3z" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+    </form>
+    <form class="desktop-dock" id="term-desktop">
+        <p class="term-caption" id="term-desktop-caption">Press Tab to autocomplete.</p>
+        <div class="term-suggest" id="term-suggest"></div>
+        <div class="term-row">
+            <span class="term-prompt" data-prompt>amy@lee:~$</span>
+            <div class="term-field">
+                <div class="term-ghost" aria-hidden="true"><span id="term-mirror"></span><span class="term-rest" id="term-rest"></span></div>
+                <input id="term-input" aria-label="Command" autocomplete="off" autocapitalize="off" spellcheck="false" />
+            </div>
+        </div>
+    </form>
+</div>
+<script src="/scripts/terminal.js" defer></script>

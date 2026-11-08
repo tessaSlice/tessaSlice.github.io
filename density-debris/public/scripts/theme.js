@@ -1,16 +1,7 @@
 (function () {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const savedTheme = localStorage.getItem('theme');
-
-    let theme = 'light';
-    // first check if they prefer dark mode
-    if (prefersDark) {
-        theme = 'dark';
-    }
-    // then check if they have a saved theme (this has higher priority)
-    if (savedTheme) {
-        theme = savedTheme;
-    }
+    // A first visit stays light even when the device is set to dark.
+    const theme = savedTheme === 'dark' ? 'dark' : 'light';
 
     document.documentElement.setAttribute('data-theme', theme);
     if (theme === 'dark') {

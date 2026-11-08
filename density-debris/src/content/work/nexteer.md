@@ -1,7 +1,8 @@
 ---
 name: 'Nexteer'
-caption: "Embedded systems intern"
-description: 'Embedded systems intern.'
+caption: ""
+description: ''
 tags: []
 visible: True
 ---
+Electrical Systems Core - Embedded Systems Intern (May 2024 - August 2024)

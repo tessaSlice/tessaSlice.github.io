@@ -14,9 +14,10 @@
     if (!log || !input) return;
 
     function cardText(entry) {
-        const lines = [entry.name, entry.caption, entry.description];
+        const lines = [entry.name, entry.caption, entry.description].filter((line) => line);
         if (entry.tags && entry.tags.length) lines.push("Tech: " + entry.tags.join(", "));
         if (entry.github) lines.push("GitHub: " + entry.github);
+        if (entry.body) lines.push(entry.body);
         return lines.join("\n");
     }
 
@@ -419,6 +420,17 @@
         }
         if (wide()) input.focus();
     }
+
+    const app = log.closest(".terminal-app");
+    app.addEventListener("click", (event) => {
+        if (!wide() || !dark()) return;
+        if (event.target.closest("a, button, input, textarea")) return;
+        const selected = window.getSelection();
+        if (selected && !selected.isCollapsed) return;
+        input.focus();
+        const end = input.value.length;
+        input.setSelectionRange(end, end);
+    });
 
     phoneForm.addEventListener("submit", (event) => {
         event.preventDefault();

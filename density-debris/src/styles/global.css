@@ -412,6 +412,10 @@ header {
     transition: visibility 0s 0.2s, opacity 0.2s linear;
 }
 
+.nav-text-split {
+    text-align: center;
+}
+
 .nav-item:hover .nav-icon {
     visibility: hidden;
     opacity: 0;

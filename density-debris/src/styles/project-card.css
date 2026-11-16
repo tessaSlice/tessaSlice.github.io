@@ -7,6 +7,10 @@
 }
 
 /* Project Card Styles */
+#scoliosis-bot {
+    scroll-margin-top: 1.5rem;
+}
+
 .project-card {
     position: relative;
     width: 100%;

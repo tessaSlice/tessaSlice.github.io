@@ -10,7 +10,10 @@ const visibleProjects = projects.filter((project) => project.data.visible);
 
 {
     visibleProjects.map((project) => (
-        <div class="project-card">
+        <div
+            class="project-card"
+            id={project.slug === "scoliosis-bot" ? "scoliosis-bot" : undefined}
+        >
             <a
                 href={project.data.github_link}
                 target="_blank"

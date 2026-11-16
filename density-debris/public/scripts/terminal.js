@@ -144,6 +144,34 @@
         stick();
     }
 
+    function appendLink(parent, href, label) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.textContent = label;
+        if (!href.startsWith("mailto:")) {
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+        }
+        parent.append(anchor);
+    }
+
+    function printFile(text) {
+        const row = document.createElement("div");
+        row.className = "term-out";
+        text.split("\n").forEach((line, index) => {
+            if (index) row.append(document.createTextNode("\n"));
+            const github = line.match(/^(GitHub: )(https?:\/\/\S+)$/);
+            if (github) {
+                row.append(document.createTextNode(github[1]));
+                appendLink(row, github[2], github[2]);
+            } else {
+                row.append(document.createTextNode(line));
+            }
+        });
+        log.append(row);
+        stick();
+    }
+
     function printWhoami() {
         const row = document.createElement("div");
         row.className = "term-out";
@@ -152,18 +180,12 @@
             ["Email: ", "mailto:amyrlee@umich.edu", "amyrlee@umich.edu"],
             ["Linkedin: ", "https://www.linkedin.com/in/amy-lee-umich", "https://www.linkedin.com/in/amy-lee-umich"],
             ["GitHub: ", "https://github.com/tessaSlice", "https://github.com/tessaSlice"],
+            ["Stack Overflow: ", "https://stackoverflow.com/users/perplexingparadox?tab=profile", "https://stackoverflow.com/users/perplexingparadox?tab=profile"],
         ];
         links.forEach(([prefix, href, label], index) => {
             if (index) row.append(document.createTextNode("\n"));
             row.append(document.createTextNode(prefix));
-            const anchor = document.createElement("a");
-            anchor.href = href;
-            anchor.textContent = label;
-            if (!href.startsWith("mailto:")) {
-                anchor.target = "_blank";
-                anchor.rel = "noopener noreferrer";
-            }
-            row.append(anchor);
+            appendLink(row, href, label);
         });
         log.append(row);
         stick();
@@ -380,7 +402,7 @@
                 const found = resolve(arg);
                 if (!found.node) printOutput("No file named " + arg + ".");
                 else if (found.node.kind === "dir") printOutput("cat: " + arg + ": is a directory");
-                else printOutput(found.node.text);
+                else printFile(found.node.text);
             }
         } else if (name === "exit") {
             printOutput("Returning to the website.");

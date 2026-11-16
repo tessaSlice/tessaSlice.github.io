@@ -36,6 +36,30 @@ const books = [];
                 embedded systems intern.
             </p>
             <p>For those curious, dark mode doesn't just dim this website.</p>
+            <div class="origin-story">
+                <p>
+                    <a href="#scoliosis-bot">Scoliosis Bot</a>, listed
+                    below, was one of my first personal projects. During my
+                    high school junior year I was trapped inside while the
+                    pandemic raged outside, so I was glued to my desk all day.
+                    My parents constantly commented about my poor posture. So I
+                    set out to create a Discord bot that would remind me, at
+                    random intervals throughout the day, to sit up. For a
+                    nascent programmer, the canonical event of discovering Stack Overflow
+                    was inevitable. (Of course, AI changed everything, but this
+                    was 2021, in the pre-AI era.) At first, I only asked
+                    questions. But over the span of several months the asking
+                    turned into answering, and I became an avid participant in
+                    the discord.js community while I tinkered away at the
+                    Discord bot. I owe the Stack Overflow community a huge
+                    thank you for the experience I gained in programming and
+                    technical communication.
+                </p>
+                <p>
+                    There's other projects below that represent a subset what
+                    I've worked on since.
+                </p>
+            </div>
             <!-- Hidden for now. Delete the .bio-aside, .books-section rule in the style block to show this paragraph and the book box again. -->
             <p class="bio-aside">
                 Besides my work, I aspire to be a tea master and in my spare
@@ -220,6 +244,15 @@ const books = [];
 </html>
 
 <style>
+    .origin-story a:any-link {
+        color: var(--accent);
+    }
+
+    .origin-story a:hover,
+    .origin-story a:focus-visible {
+        color: var(--accent-hover);
+    }
+
     .interest-rotator {
         position: relative;
         color: var(--accent);

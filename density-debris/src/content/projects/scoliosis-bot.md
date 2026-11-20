@@ -18,8 +18,8 @@ This project was born out of my desire to avoid developing back pain in the futu
 
 The bot was primarily built from `Discord.js` (version 12). To set it up, I had to install `Node.js` and coded it using `JavaScript`. It was my first time working with event-driven programming, and it was unlike my prior coding experiences. I had a lot of fun working on it and learned a lot given that it was one of the very first programming projects that I had ever worked on. 
 
-More details can be found in the GitHub repository where I list out instructions for how to host the bot locally if you wished. 
+More details can be found in the GitHub repository where I list out instructions for how to host the bot locally.
 
 # Check it out!
 
-- [GitHub repository](https://github.com/tessaSlice/Scoliosis-Bot): Contains my source files and also instructions for how to host the bot locally if you wish. 
+- [GitHub repository](https://github.com/tessaSlice/Scoliosis-Bot): Contains my source files and also instructions for how to host the bot.

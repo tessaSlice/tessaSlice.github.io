@@ -2,7 +2,6 @@
 import "../styles/project-card.css";
 import ProjectTags from "./ProjectTags.astro";
 import { getCollection } from "astro:content";
-import { Icon } from "astro-icon/components";
 
 const projects = await getCollection("projects");
 const visibleProjects = projects.filter((project) => project.data.visible);
@@ -10,42 +9,100 @@ const visibleProjects = projects.filter((project) => project.data.visible);
 
 {
     visibleProjects.map((project) => (
-        <div
+        <article
             class="project-card"
             id={project.slug === "scoliosis-bot" ? "scoliosis-bot" : undefined}
         >
-            <a
-                href={project.data.github_link}
-                target="_blank"
-                class="github-link"
-            >
-                <Icon name="github" class="github-icon" />
-            </a>
-            <div class="content">
-                <div class="item">
-                    <div class="icon-container">
-                        <div class="icon">
-                            <Icon name={project.data.icon} />
-                        </div>
-                    </div>
-                    <div class="text">
-                        <h3>{project.data.name}</h3>
-                        <p>{project.data.caption}</p>
-                    </div>
-                </div>
-                <p class="description">{project.data.description}</p>
-                <div class="tags-wrapper">
-                    <div class="tags-container">
-                        <ProjectTags tags={project.data.tags} />
-                    </div>
-                </div>
-                {/*
-                    Tile link to the project page is off for now. The page
-                    still lives at /projects/<slug>. Put this anchor back to
-                    make the card open it again:
-                    <a href={`/projects/${project.slug}`} class="learn-more" aria-label={`Learn more about ${project.data.name}`}>Learn more</a>
-                */}
+            <div class="text">
+                <h3>{project.data.name}</h3>
+                <p class="caption">{project.data.caption}</p>
             </div>
-        </div>
+            <button
+                type="button"
+                class="project-image"
+                aria-label={`View full size: ${project.data.image_alt}`}
+            >
+                <img
+                    src={project.data.image}
+                    alt=""
+                    width="960"
+                    height="640"
+                />
+            </button>
+            <div class="content">
+                <p class="description">{project.data.description}</p>
+                <div class="tags-container">
+                    <ProjectTags tags={project.data.tags} />
+                </div>
+                <div class="project-links">
+                    {project.data.github_link && (
+                        <a
+                            href={project.data.github_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    )}
+                    {project.data.devpost_link && (
+                        <a
+                            href={project.data.devpost_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Devpost
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    )}
+                </div>
+            </div>
+        </article>
     ))
 }
+
+<dialog id="project-image-modal" class="image-modal" aria-label="Full size project image">
+    <button type="button" class="image-modal-close" aria-label="Close">×</button>
+    <img alt="" />
+</dialog>
+
+<script>
+    const dialog = document.querySelector("#project-image-modal");
+    const preview = dialog?.querySelector("img");
+    const close = dialog?.querySelector(".image-modal-close");
+
+    function fitPreview() {
+        if (!(preview instanceof HTMLImageElement) || !preview.naturalWidth) return;
+        const ratio = preview.naturalWidth / preview.naturalHeight;
+        let width = window.innerWidth;
+        let height = width / ratio;
+        if (height > window.innerHeight) {
+            height = window.innerHeight;
+            width = height * ratio;
+        }
+        preview.style.width = `${width}px`;
+        preview.style.height = `${height}px`;
+    }
+
+    document.querySelectorAll(".project-image").forEach((button) => {
+        button.addEventListener("click", () => {
+            const source = button.querySelector("img");
+            if (!(dialog instanceof HTMLDialogElement) || !(preview instanceof HTMLImageElement) || !(source instanceof HTMLImageElement)) return;
+            preview.src = source.currentSrc || source.src;
+            preview.alt = button.getAttribute("aria-label")?.replace(/^View full size:\s*/, "") || "";
+            if (preview.complete) fitPreview();
+            dialog.showModal();
+        });
+    });
+
+    preview?.addEventListener("load", fitPreview);
+    window.addEventListener("resize", () => {
+        if (dialog instanceof HTMLDialogElement && dialog.open) fitPreview();
+    });
+    close?.addEventListener("click", () => {
+        if (dialog instanceof HTMLDialogElement) dialog.close();
+    });
+    dialog?.addEventListener("click", (event) => {
+        if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+    });
+</script>

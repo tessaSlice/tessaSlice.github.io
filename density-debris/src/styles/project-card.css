@@ -1,31 +1,29 @@
-/* Project Cards Container Styles */
+/* A bit wider than the old 260px minimum, so a picture can stand in for the icon. */
 .project-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
     width: 100%;
 }
 
-/* Project Card Styles */
 #scoliosis-bot {
     scroll-margin-top: 1.5rem;
 }
 
 .project-card {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: none;
+    margin: 0;
+    padding: 16px;
     border: 2px solid var(--card-border);
     border-radius: 10px;
     background-color: var(--card-surface);
     box-shadow: 0px 4px 10px rgba(70, 48, 24, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
     box-sizing: border-box;
-    cursor: default;
+    text-align: center;
 }
 
 .project-card:hover {
@@ -37,118 +35,191 @@
     box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.32);
 }
 
-
-
-.icon-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.project-image {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    border-radius: 8px;
 }
 
-.github-link {
-    position: absolute;
-    top: -16px;
-    right: -16px;
-    overflow: visible;
-    z-index: 2;
-    color: #7c3aed;
+.project-image:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.project-card .project-image img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 12 / 5;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+
+.image-modal {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+.image-modal::backdrop {
+    background: rgba(24, 18, 14, 0.92);
+}
+
+.image-modal[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal img {
+    display: block;
+    width: 100vw;
+    height: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+.image-modal-close {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(44, 38, 31, 0.88);
+    color: #f6f1e8;
+    font: inherit;
+    font-size: 28px;
+    line-height: 1;
     cursor: pointer;
 }
 
-.github-icon {
-    width: 34px;
-    height: 34px;
-    padding: 3px;
-    box-sizing: border-box;
-    color: #7c3aed;
-    border: 2px solid #7c3aed;
-    border-radius: 8px;
-    background-color: #fffaf4;
+.image-modal-close:focus-visible,
+.image-modal-close:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
 }
 
-.content {
-    flex: 1;
+.image-modal-close:focus-visible {
+    outline: 2px solid #f6f1e8;
+    outline-offset: 3px;
+}
+
+.project-card .content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    width: 100%;
+    margin-top: 12px;
 }
 
-.item {
-    padding-left: 10px;
-    display: flex;
-    align-items: center;
+.project-card .text {
+    margin-bottom: 12px;
 }
 
-.icon {
-    font-size: 40px;
-    margin-right: 15px;
-}
-
-.text {
-    margin-bottom: 15px;
-}
-
-.text h3 {
-    margin: 0 0 10px 0;
+.project-card h3 {
+    margin: 0 0 6px;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
-.text p {
+.project-card .caption {
     margin: 0;
     font-size: 14px;
 }
 
-.description {
-    margin-top: 5px;
-}
-
-.tags-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
+.project-card .description {
+    margin: 0;
 }
 
 .tags-container {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.tags-container > div {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    justify-content: center;
+    gap: 8px;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.project-card .project-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 4px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.project-card .project-links a:hover,
+.project-card .project-links a:focus-visible {
+    background: var(--accent);
+    color: var(--accent-ink);
+}
+
+.project-card .project-links a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-card .project-links a {
+        transition: none;
+    }
+
+    .project-card:hover {
+        transform: none;
+    }
 }
 
 .tags-container .tag {
     background-color: var(--tag-background);
     color: var(--tag-text);
-    padding: 5px 10px;
+    padding: 2px 8px;
     border-radius: 5px;
     font-size: 12px;
     display: inline-block;
     border: 1px solid var(--tag-border);
-    margin-right: 5px;
-    margin-bottom: 8px;
-}
-
-/* Kept for when the card link in ProjectCard.astro is restored.
-   Project pages reuse .learn-more for the back link, so this stays scoped to the card. */
-.project-card .learn-more {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
     margin: 0;
-    padding: 0;
-    background: transparent;
-    color: transparent;
-    font-size: 0;
-    border-radius: 10px;
 }
 
-.project-card .learn-more:hover,
-.project-card .learn-more:focus {
-    background: transparent;
-}
-
+/* Project pages reuse .learn-more for the back link. */
 .learn-more {
     display: block;
     margin-top: 15px;

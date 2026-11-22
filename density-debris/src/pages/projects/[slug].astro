@@ -29,7 +29,9 @@ const { Content } = await project.render();
         >
     </div>
     <h1>{project.data.name}</h1>
-    <Content />
+    <article class="project-body">
+        <Content />
+    </article>
 </ProjectLayout>
 
 <style>
@@ -67,5 +69,15 @@ const { Content } = await project.render();
         .header-container .learn-more .button-text {
             display: none;
         }
+    }
+</style>
+
+<style is:global>
+    .project-body img {
+        display: block;
+        width: min(100%, 720px);
+        height: auto;
+        border-radius: 10px;
+        margin: 0 0 1.25rem;
     }
 </style>

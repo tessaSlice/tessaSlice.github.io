@@ -140,7 +140,8 @@ main a:focus-visible {
 }
 
 /* Heading Styles */
-h1 {
+h1,
+#projects {
     margin: 1rem 0;
     font-size: 2.5rem;
 }
@@ -380,6 +381,13 @@ header {
     display: none;
 }
 
+.nav-links a:focus-visible,
+.nav-left > a:focus-visible,
+button#theme-toggle:focus-visible {
+    outline: 2px solid var(--nav-text-color);
+    outline-offset: 3px;
+}
+
 .nav-item {
     position: relative;
     display: flex;
@@ -416,14 +424,16 @@ header {
     text-align: center;
 }
 
-.nav-item:hover .nav-icon {
+.nav-item:hover .nav-icon,
+.nav-links a:focus-visible .nav-icon {
     visibility: hidden;
     opacity: 0;
     transition-delay: 0s;
     /* Make sure the icon hides immediately */
 }
 
-.nav-item:hover .nav-text {
+.nav-item:hover .nav-text,
+.nav-links a:focus-visible .nav-text {
     visibility: visible;
     opacity: 1;
     transition-delay: 0s;

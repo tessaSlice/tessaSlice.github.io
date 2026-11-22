@@ -7,8 +7,13 @@ tags:
   - Arduino
   - Bluetooth
 github_link: "https://github.com/tessaSlice/wireless-walker"
+devpost_link: "https://devpost.com/software/wireless-walker"
+image: "/project-imgs/wireless-walker.jpg"
+image_alt: "An upright cane with terracotta bands and concentric sound arcs."
 visible: True
 ---
+
+![An upright cane with terracotta bands and concentric sound arcs.](/project-imgs/wireless-walker.jpg)
 
 This is a project I did with other high school students for SpartaHack 8, a hackathon hosted at Michigan State University. 
 

@@ -11,8 +11,12 @@ tags:
   - matplotlib
   - scikit-learn
 github_link: "https://github.com/tessaSlice/Gene-Regression-Analysis"
+image: "/project-imgs/gene-regression.jpg"
+image_alt: "Ink dots and a single terracotta curve on cream paper."
 visible: True
 ---
+
+![Ink dots and a single terracotta curve on cream paper.](/project-imgs/gene-regression.jpg)
 
 In my junior year of high school, I joined a club who were pursuing several research projects involving links between genes and diseases. 
 

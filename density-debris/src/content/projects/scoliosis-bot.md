@@ -7,7 +7,6 @@ tags:
   - Discord.js
   - JavaScript
   - Node.js
-  - Bot
 github_link: "https://github.com/tessaSlice/Scoliosis-Bot"
 image: "/project-imgs/scoliosis-bot.jpg"
 image_alt: "A small rounded robot beside an empty wooden chair and a plant."

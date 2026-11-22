@@ -7,7 +7,6 @@ tags:
   - Python
   - GEMINI
   - AI
-  - LLM
   - Web dev
   - Google API
 github_link: "https://github.com/tessaSlice/TrekTician"

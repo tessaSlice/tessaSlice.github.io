@@ -5,7 +5,6 @@ caption: "A classic"
 description: 'Tetris built from scratch using standard Java libraries.'
 tags:
   - Java
-  - Game
   - Eclipse IDE
 github_link: "https://github.com/tessaSlice/Tetris"
 image: "/project-imgs/tetris.jpg"

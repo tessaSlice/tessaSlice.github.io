@@ -13,8 +13,6 @@ image_alt: "A breadboard with jumper wires beside a round safe dial on a wooden 
 visible: False
 ---
 
-![A breadboard with jumper wires beside a round safe dial on a wooden desk.](/project-imgs/peterman.jpg)
-
 During the summer of 2023, Nexteer hosted an embedded systems competition for students who lived in the region. I took this as an opportunity to learn more about how to use Arduinos. The competition theme was cracking a series of challenges, which would eventually crack open a lock and students would be awarded points. Nexteer also hosted the inaugural embedded coding competition the year prior, which I had also participated in and is what really spawned my knowledge of Arduino. 
 
 # How I did it

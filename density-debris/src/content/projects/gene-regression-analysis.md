@@ -16,8 +16,6 @@ image_alt: "Ink dots and a single terracotta curve on cream paper."
 visible: True
 ---
 
-![Ink dots and a single terracotta curve on cream paper.](/project-imgs/gene-regression.jpg)
-
 In my junior year of high school, I joined a club who were pursuing several research projects involving links between genes and diseases. 
 
 Although I had no background knowledge in genes or RNA sequencing, I was interested in seeing how applications of programming, ML in particular, could potentially reduce the cost of performing a medical procedure. 

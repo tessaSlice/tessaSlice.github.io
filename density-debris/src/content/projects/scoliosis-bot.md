@@ -13,8 +13,6 @@ image_alt: "A small rounded robot beside an empty wooden chair and a plant."
 visible: True
 ---
 
-![A small rounded robot beside an empty wooden chair and a plant.](/project-imgs/scoliosis-bot.jpg)
-
 This project was born out of my desire to avoid developing back pain in the future. During the pandemic, I was constantly staring at a computer screen since all of my courses were virtual. I figured I might as well spend some time developing a bot that would remind me at random intervals of time in the day to take a break from staring at a computer screen. 
 
 # How I did it

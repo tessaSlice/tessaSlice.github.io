@@ -13,8 +13,6 @@ image_alt: "An upright cane with terracotta bands and concentric sound arcs."
 visible: True
 ---
 
-![An upright cane with terracotta bands and concentric sound arcs.](/project-imgs/wireless-walker.jpg)
-
 This is a project I did with other high school students for SpartaHack 8, a hackathon hosted at Michigan State University. 
 
 Tools evolve, whether to improve security, increase ergonomics, or become more efficient. When the walking cane’s color was changed from black to white, safety increased as the canes became more visible to motorists as users crossed the street. However, many flaws of the white cane, including limited detection and obtrusiveness, have yet to be addressed. This is where the Wireless Walker gets the spotlight.

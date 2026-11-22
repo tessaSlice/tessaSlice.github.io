@@ -16,8 +16,6 @@ image_alt: "A folded map with a terracotta route beside a leather suitcase."
 visible: True
 ---
 
-![A folded map with a terracotta route beside a leather suitcase.](/project-imgs/trektician.jpg)
-
 Traveling is rewarding; however, planning can be stressful. Many plans their trip with a travel agency due to convenience, while others choose to plan online because of flexibility. TrekTician gives a one-stop tour planner that generates all aspects of your travel plan tailored to your preferences, which provides BOTH convenience and flexibility.
 
 # How we did it

@@ -12,8 +12,6 @@ image_alt: "Three tetrominoes, a T, an L, and a square, on cream paper."
 visible: True
 ---
 
-![Three tetrominoes, a T, an L, and a square, on cream paper.](/project-imgs/tetris.jpg)
-
 In high schoool, my computer science teacher challenged my class to create a game and then implement an AI algorithm. I chose Tetris. I also implemented a genetic algorithm, but unfortunately the parameters are not tuned very well so the decisions made by the algorithm are effectively random. 
 
 This was undoubtedly the biggest CS project I had done up to that point, spanning many files. I always look back at this project fondly to remember har far I've progressed in my programming skills since then. 

@@ -13,8 +13,8 @@ const projects = defineCollection({
   schema: z.object({
     ...entry,
     icon: z.string(),
-    image: z.string(),
-    image_alt: z.string(),
+    image: z.string().optional(),
+    image_alt: z.string().optional(),
     devpost_link: z.string().url().optional(),
   }),
 });

@@ -2,13 +2,16 @@
 import "../styles/project-card.css";
 import ProjectTags from "./ProjectTags.astro";
 import { getCollection } from "astro:content";
+import { existingProjectImage } from "../lib/project-image";
 
 const projects = await getCollection("projects");
 const visibleProjects = projects.filter((project) => project.data.visible);
 ---
 
 {
-    visibleProjects.map((project) => (
+    visibleProjects.map((project) => {
+        const image = existingProjectImage(project.data.image);
+        return (
         <article
             class="project-card"
             id={project.slug === "scoliosis-bot" ? "scoliosis-bot" : undefined}
@@ -17,18 +20,15 @@ const visibleProjects = projects.filter((project) => project.data.visible);
                 <h3>{project.data.name}</h3>
                 <p class="caption">{project.data.caption}</p>
             </div>
-            <button
-                type="button"
-                class="project-image"
-                aria-label={`View full size: ${project.data.image_alt}`}
-            >
-                <img
-                    src={project.data.image}
-                    alt=""
-                    width="960"
-                    height="640"
-                />
-            </button>
+            {image && (
+                <button
+                    type="button"
+                    class="project-image"
+                    aria-label={`View full size: ${project.data.image_alt ?? project.data.name}`}
+                >
+                    <img src={image} alt="" width="960" height="640" />
+                </button>
+            )}
             <div class="content">
                 <p class="description">{project.data.description}</p>
                 <div class="tags-container">
@@ -58,7 +58,8 @@ const visibleProjects = projects.filter((project) => project.data.visible);
                 </div>
             </div>
         </article>
-    ))
+        );
+    })
 }
 
 <dialog id="project-image-modal" class="image-modal" aria-label="Full size project image">

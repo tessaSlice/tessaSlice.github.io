@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { existingProjectImage } from "../../lib/project-image";
 
 import "../../styles/project-card.css";
 
@@ -20,6 +21,7 @@ if (!project) {
 }
 
 const { Content } = await project.render();
+const image = existingProjectImage(project.data.image);
 ---
 
 <ProjectLayout>
@@ -30,6 +32,16 @@ const { Content } = await project.render();
     </div>
     <h1>{project.data.name}</h1>
     <article class="project-body">
+        {
+            image && (
+                <img
+                    src={image}
+                    alt={project.data.image_alt ?? ""}
+                    width="960"
+                    height="640"
+                />
+            )
+        }
         <Content />
     </article>
 </ProjectLayout>

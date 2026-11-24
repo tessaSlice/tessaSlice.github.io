@@ -46,11 +46,6 @@
     border-radius: 8px;
 }
 
-.project-image:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-}
-
 .project-card .project-image img {
     display: block;
     width: 100%;
@@ -111,15 +106,9 @@
     cursor: pointer;
 }
 
-.image-modal-close:focus-visible,
 .image-modal-close:hover {
     background: var(--accent);
     color: var(--accent-ink);
-}
-
-.image-modal-close:focus-visible {
-    outline: 2px solid #f6f1e8;
-    outline-offset: 3px;
 }
 
 .project-card .content {
@@ -186,15 +175,9 @@
     transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.project-card .project-links a:hover,
-.project-card .project-links a:focus-visible {
+.project-card .project-links a:hover {
     background: var(--accent);
     color: var(--accent-ink);
-}
-
-.project-card .project-links a:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {

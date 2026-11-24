@@ -67,43 +67,4 @@ const visibleProjects = projects.filter((project) => project.data.visible);
     <img alt="" />
 </dialog>
 
-<script>
-    const dialog = document.querySelector("#project-image-modal");
-    const preview = dialog?.querySelector("img");
-    const close = dialog?.querySelector(".image-modal-close");
-
-    function fitPreview() {
-        if (!(preview instanceof HTMLImageElement) || !preview.naturalWidth) return;
-        const ratio = preview.naturalWidth / preview.naturalHeight;
-        let width = window.innerWidth;
-        let height = width / ratio;
-        if (height > window.innerHeight) {
-            height = window.innerHeight;
-            width = height * ratio;
-        }
-        preview.style.width = `${width}px`;
-        preview.style.height = `${height}px`;
-    }
-
-    document.querySelectorAll(".project-image").forEach((button) => {
-        button.addEventListener("click", () => {
-            const source = button.querySelector("img");
-            if (!(dialog instanceof HTMLDialogElement) || !(preview instanceof HTMLImageElement) || !(source instanceof HTMLImageElement)) return;
-            preview.src = source.currentSrc || source.src;
-            preview.alt = button.getAttribute("aria-label")?.replace(/^View full size:\s*/, "") || "";
-            if (preview.complete) fitPreview();
-            dialog.showModal();
-        });
-    });
-
-    preview?.addEventListener("load", fitPreview);
-    window.addEventListener("resize", () => {
-        if (dialog instanceof HTMLDialogElement && dialog.open) fitPreview();
-    });
-    close?.addEventListener("click", () => {
-        if (dialog instanceof HTMLDialogElement) dialog.close();
-    });
-    dialog?.addEventListener("click", (event) => {
-        if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
-    });
-</script>
+<script src="/scripts/project-image.js" defer></script>

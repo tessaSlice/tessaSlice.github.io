@@ -139,7 +139,7 @@
 }
 
 .tags-container {
-    margin-top: 12px;
+    margin-top: 6px;
     width: 100%;
 }
 
@@ -154,23 +154,21 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
-    margin-top: 12px;
+    gap: 4px;
+    margin-top: 6px;
 }
 
 .project-card .project-links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 4px 10px;
-    border: 1px solid var(--card-border);
-    border-radius: 4px;
+    gap: 4px;
+    padding: 2px 8px;
+    border: 1px solid var(--accent);
+    border-radius: 5px;
     background: transparent;
-    color: inherit;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.03em;
-    line-height: 1.2;
     text-decoration: none;
     transition: background-color 0.15s ease, color 0.15s ease;
 }

@@ -4,6 +4,7 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 import { existingProjectImage } from "../../lib/project-image";
 
 import "../../styles/project-card.css";
+import "../../styles/project-page.css";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -45,51 +46,3 @@ const image = existingProjectImage(project.data.image);
         <Content />
     </article>
 </ProjectLayout>
-
-<style>
-    .header-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 15px;
-    }
-
-    .header-container h1 {
-        margin: 0;
-        text-align: center;
-        flex: 1;
-    }
-
-    .header-container .learn-more {
-        margin: 0;
-        padding: 10px 15px;
-        background-color: var(--accent);
-        color: var(--accent-ink);
-        text-align: center;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        flex-shrink: 0;
-    }
-
-    .header-container .learn-more:hover {
-        background-color: var(--accent-hover);
-        color: var(--accent-ink);
-    }
-
-    @media (max-width: 600px) {
-        .header-container .learn-more .button-text {
-            display: none;
-        }
-    }
-</style>
-
-<style is:global>
-    .project-body img {
-        display: block;
-        width: min(100%, 720px);
-        height: auto;
-        border-radius: 10px;
-        margin: 0 0 1.25rem;
-    }
-</style>

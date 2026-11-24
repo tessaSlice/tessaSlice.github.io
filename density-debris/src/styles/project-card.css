@@ -1,4 +1,4 @@
-/* A bit wider than the old 260px minimum, so a picture can stand in for the icon. */
+/* Project Cards Container Styles */
 .project-cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -147,7 +147,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .project-links {

@@ -134,13 +134,13 @@ main a:any-link {
     color: var(--accent);
 }
 
-main a:hover,
-main a:focus-visible {
+main a:hover {
     color: var(--accent-hover);
 }
 
 /* Heading Styles */
-h1 {
+h1,
+#projects {
     margin: 1rem 0;
     font-size: 2.5rem;
 }

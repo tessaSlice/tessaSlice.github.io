@@ -11,6 +11,8 @@ tags:
   - matplotlib
   - scikit-learn
 github_link: "https://github.com/tessaSlice/Gene-Regression-Analysis"
+image: "/project-imgs/gene-regression.jpg"
+image_alt: "Ink dots and a single terracotta curve on cream paper."
 visible: True
 ---
 

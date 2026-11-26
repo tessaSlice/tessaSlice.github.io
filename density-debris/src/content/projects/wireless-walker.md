@@ -7,6 +7,9 @@ tags:
   - Arduino
   - Bluetooth
 github_link: "https://github.com/tessaSlice/wireless-walker"
+devpost_link: "https://devpost.com/software/wireless-walker"
+image: "/project-imgs/wireless-walker.jpg"
+image_alt: "An upright cane with terracotta bands and concentric sound arcs."
 visible: True
 ---
 

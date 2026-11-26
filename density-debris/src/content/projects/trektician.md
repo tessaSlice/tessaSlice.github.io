@@ -7,10 +7,12 @@ tags:
   - Python
   - GEMINI
   - AI
-  - LLM
   - Web dev
   - Google API
 github_link: "https://github.com/tessaSlice/TrekTician"
+devpost_link: "https://devpost.com/software/trektician-simplify-travel-planning-without-sacrificing-fun"
+image: "/project-imgs/trektician.jpg"
+image_alt: "A folded map with a terracotta route beside a leather suitcase."
 visible: True
 ---
 

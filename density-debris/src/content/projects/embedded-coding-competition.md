@@ -8,6 +8,8 @@ tags:
   - Arduino
   - Embedded
 github_link: "https://github.com/tessaSlice/NextGeneration-Coding-Competition"
+image: "/project-imgs/peterman.jpg"
+image_alt: "A breadboard with jumper wires beside a round safe dial on a wooden desk."
 visible: False
 ---
 
